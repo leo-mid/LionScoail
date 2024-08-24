@@ -14,6 +14,34 @@ append :linked_files, "config/master.key"
 
 set :rbenv_type, :user
 
+namespace :deploy do
+  before :updated, 'yarn:install'
+  before :updated, 'yarn:build'
+end
+
+namespace :yarn do
+  desc 'Install yarn dependencies'
+  task :install do
+    on roles(:app) do
+      within release_path do
+        execute :yarn, :install
+      end
+    end
+  end
+
+  desc 'yarn dependencies'
+  task :build do
+    on roles(:app) do
+      within release_path do
+        with node_env: :production do
+          execute :yarn, :build
+          execute :yarn, :build:css
+        end
+      end
+    end
+  end
+end
+
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy
 # This is useful if you don't want to use ENV variables
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'

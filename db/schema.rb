@@ -305,7 +305,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
   add_foreign_key "comments", "videos"
   add_foreign_key "credits", "movies"
   add_foreign_key "forums", "users"
-  add_foreign_key "forums", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "movies", "users"
