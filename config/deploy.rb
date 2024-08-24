@@ -35,7 +35,7 @@ namespace :yarn do
       within release_path do
         with node_env: :production do
           execute :yarn, :build
-          execute :yarn, :build:css
+          execute :yarn, :build_css
         end
       end
     end
