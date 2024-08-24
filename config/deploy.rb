@@ -34,8 +34,8 @@ namespace :yarn do
     on roles(:app) do
       within release_path do
         with node_env: :production do
-          execute :yarn, :build
-          execute :yarn, :build_css
+          execute("yarn build")
+          execute("yarn build:css")
         end
       end
     end
