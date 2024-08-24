@@ -1,0 +1,54 @@
+= form_for user do |f|
+  -if current_user == user
+    - if f.object.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
+        %ul
+          - f.object.errors.full_messages.each do |message|
+            %li= message
+    .grid-x
+      .medium-4.cell.space
+        .field
+          = f.label :email
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label :password
+          - if @minimum_password_length
+            %em
+              = @minimum_password_length
+              characters minimum
+          %br/
+          %i (Leave blank if you don't want to change it)
+          %br/
+          = f.password_field :password, autocomplete: "new-password"
+          .field
+            = f.label :password_confirmation
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "new-password"
+      .medium-4.cell.space
+        .field
+          = f.label :Username
+          %br/
+          = f.text_field :username
+        .field
+          = f.label :bio
+          %br/
+          = f.text_area :body, rows: 2
+      .medium-4.cell.space
+        .field
+          = f.label :avatar, "Profile Picture"
+          = f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png,image/heic', direct_upload: true
+          - if f.object.avatar.attached?
+            = image_tag f.object.avatar.variant(resize_to_limit: [400, 400])
+  -else
+    .field
+      = f.label :Role
+      %br/
+      = f.text_field :role
+  .actions
+    = f.submit "Update", class:"button"
+-if current_user == user
+  %h3 Cancel my account
+  = link_to "Delete", user, data: { "turbo-method": :delete, turbo_confirm: "Notice this will delete all your things accross LionNav.com. Do you wish to continue?" }, class: "button"
+

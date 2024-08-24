@@ -1,0 +1,38 @@
+- if @about.errors.any?
+  %h2 The following errors prevented the about page from saving:
+  %ul
+    - @about.errors.full_messages.each do |msg|
+      %li= msg
+= form_for @about do |f|
+  %p
+    = f.label :Site
+    = f.text_field :site
+  %p
+    = f.label :Title
+    = f.text_field :title
+  %p
+    = f.label :Top_paragrath
+    = f.text_area :toppara
+  %p
+    = f.label :Version
+    =f.text_field :change
+  %p
+    = f.label :list1
+    = f.text_field :list1
+  %p
+    = f.label :list2
+    = f.text_field :list2
+  %p
+    = f.label :list3
+    = f.text_field :list3
+  %p
+    = f.label :Github_Name_For_link
+    = f.text_field :githubtitle
+  %p
+    = f.label :Link_For_Github
+    = f.text_field :linkgithub
+  %p
+    = f.label :bottom
+    = f.text_area :buttom
+  %p
+    = f.submit class: "button"

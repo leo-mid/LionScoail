@@ -1,0 +1,14 @@
+%h1 All Errors
+- @errors.each do |error|
+  .callout
+    The Error Is =
+    = error.error
+    %br/
+    The Error's Description =
+    = error.description
+    %br/
+    How long ago the error was created at
+    = time_ago_in_words(error.created_at)
+    %br/
+    = link_to 'Delete', error_path(error),'data-turbo-method': :delete, data: {confirm: "Are you sure?"}, class: "dude"
+    %br/

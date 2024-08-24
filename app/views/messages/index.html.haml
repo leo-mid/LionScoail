@@ -1,0 +1,36 @@
+= turbo_stream_from "messages"
+.grid-x
+  .medium-4.cell
+    .content-desktop
+      .callout.convo
+        %h4 Messages
+        - @conversations.each do |conversation|
+          = link_to conversation_messages_path(conversation) do
+            .grid-x
+              .medium-3.cell
+                - if conversation.recipient(current_user).avatar.attached?
+                  = image_tag @conversation.recipient(current_user).avatar.variant(resize_to_fill: [50, 20])
+                - else
+                  = image_tag ("profilepic.png"), :size => "50x20"
+              .medium-9.cell
+                %h5= conversation.recipient(current_user).username
+                - if conversation.recipient(current_user).updated_at > 5.minutes.ago
+                  %h6 Acitve Now
+                -else
+                  %h6 Active #{time_ago_in_words(conversation.recipient(current_user).updated_at)} ago
+  .medium-8.cell
+    .callout.msg_header
+      .content-desktop
+        .grid-x
+          .medium-11.cell
+            %h5= @conversation.recipient(current_user).username
+          .medium-1.cell
+            = link_to "Delete", @conversation ,data: { "turbo-method": :delete, turbo_confirm: 'Are you sure? This will delete it on both ends.' }
+      .content-mobile
+        %h3= @conversation.recipient(current_user).username
+    .callout.msg
+      = turbo_frame_tag dom_id(@conversation) do
+        = render @messages
+    .msg_send
+      = turbo_frame_tag "new_message" do
+        = render 'messages/form'

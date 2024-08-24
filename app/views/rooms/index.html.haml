@@ -1,0 +1,14 @@
+.grid-x
+  .medium-4.cell.space
+    %h3= @user.username
+    - if @user.avatar.attached?
+      = image_tag @user.avatar.variant(resize_to_fill: [150, 150])
+    %section.stats= render 'shared/stats'
+    %br/
+    %div
+      = render "form"
+  .medium-8.cell.space
+    %h4 Join any chat room that is shown on the left or make your own.
+    %br/
+    %div{id: "rooms"}
+      = render @rooms

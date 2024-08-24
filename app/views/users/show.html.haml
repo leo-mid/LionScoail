@@ -1,0 +1,52 @@
+.grid-x
+  .medium-1.cell
+  .medium-3.cell
+    - if @user.avatar.attached?
+      = image_tag @user.avatar.variant(resize_to_fill: [150, 150])
+    - else
+      .small
+        = image_tag ("profilepic.png")
+  .medium-8.cell
+    %h1= @user.username
+    %h5
+      .grid-x
+        .medium-2.cell
+          %b
+            #{@user.posts.count}
+          posts
+        .medium-2.cell
+          %b
+            %a{:href => "#{followers_user_path(@user)}"}
+              #{@user.followers.count}
+          followers
+        .medium-2.cell
+          %b
+            %a{:href => "#{following_user_path(@user)}"}
+              #{@user.following.count}
+          following
+    %br/
+    %p= @user.body
+    %br/
+    = render 'follow_form', user: @user if user_signed_in?
+.split-profile
+.grid-x
+  - @user.posts.each do |post|
+    .medium-4.cell.space
+      .callout
+        .center
+          - if post.picture.attached?
+            - if post.picture.image?
+              .thumbnail= image_tag post.picture.variant(resize: "350x350")
+            - if post.picture.video?
+              = video_tag rails_blob_path(post.picture), controls: true, class: "small"
+        %br/
+        = post.content
+        %br/
+        = link_to 'Comments', post, class: "button"
+        = link_to 'Destroy', post, 'data-turbo-method': :delete,
+        data: { confirm: 'Are you sure? You do know this is not comeing back' }, class: "button" if current_user?(post.user)
+        %br/
+    %br
+%br/
+- if current_user.role == "admin"
+  %h6= link_to "Delete", user_path,data: { "turbo-method": :delete, turbo_confirm: "Really delete this user? What did they do." }, class: "button"

@@ -1,0 +1,25 @@
+.grid-x
+  .medium-4.cell.space
+    .row
+      %aside.col-md-5
+        %section.user_info
+          %h1= @user.username
+          %br/
+          %h6= link_to "view my profile", @user, class: "button"
+          %br/
+          - if @user.avatar.attached?
+            = image_tag @user.avatar.variant(resize_to_limit: [200, 200])
+          %br/
+          %section.stats
+            = render 'shared/stats'
+          %br/
+          %span
+            %b Posts:
+            = @user.posts.count
+            %br/
+  .medium-7.cell.space
+    .col-md-8
+      %h3= @title
+      - if @users.any?
+        %ul.users.follow
+          = render @users

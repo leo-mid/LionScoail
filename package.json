@@ -1,0 +1,21 @@
+{
+  "name": "lion-social",
+  "private": true,
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.8",
+    "@rails/activestorage": "^7.1.1",
+    "@rails/ujs": "^7.1.1",
+    "esbuild": "^0.19.4",
+    "foundation-sites": "^6.8.1",
+    "jquery": "^3.7.1",
+    "motion-ui": "^2.0.5",
+    "sass": "^1.69.3",
+    "what-input": "^5.2.12"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
+}

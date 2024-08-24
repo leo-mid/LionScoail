@@ -1,0 +1,4 @@
+= form_with model: [@conversation, @message] do |f|
+  .field
+    = f.text_field  :body, placeholder: "Your message"
+    //= f.submit "Send", class: "button"

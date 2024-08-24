@@ -1,0 +1,5 @@
+= form_with model: [@room, @room_message] do |f|
+  .field
+    = f.text_field :message
+    = f.submit "Send", class: "button"
+

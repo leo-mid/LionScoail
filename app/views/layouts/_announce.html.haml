@@ -1,0 +1,4 @@
+- Announcement.all.each do |announce|
+  - if announce.site == "social" and announce.hidden == false
+    .callout
+      %p= announce.text

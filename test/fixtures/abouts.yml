@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  toparea: MyText
+  change: MyText
+  list1: MyText
+  list2: MyText
+  list3: MyText
+  bottom: MyText
+  linkgithub: MyText
+  githubtitle: MyText
+
+two:
+  title: MyString
+  toparea: MyText
+  change: MyText
+  list1: MyText
+  list2: MyText
+  list3: MyText
+  bottom: MyText
+  linkgithub: MyText
+  githubtitle: MyText

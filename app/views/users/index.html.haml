@@ -1,0 +1,7 @@
+%h1 Every User
+.grid-x
+  - @users.each do |user|
+    .medium-4.cell.space
+      .callout
+        %h6= user.username
+        %p= link_to "#{user.username}'s Profile", user_path(user)

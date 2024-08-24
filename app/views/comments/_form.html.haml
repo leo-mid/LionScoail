@@ -1,0 +1,14 @@
+%h3 Post a Comment
+= form_for [ @post, @comment ] do |f|
+  - if f.object.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
+      %ul
+        - f.object.errors.full_messages.each do |message|
+          %li= message
+  %p
+    = f.label :Comment
+    %br/
+    = f.text_area :body
+  %p
+    = f.submit 'Submit', class: "button"

@@ -1,0 +1,32 @@
+%h2
+  Edit #{resource_name.to_s.humanize}
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .callout
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :password
+      %i (Leave blank if you don't want to change it)
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .field
+      = f.label :Username
+      = f.text_field :username
+    -# .field
+    -#   = f.label :bio
+    -#   = f.text_field :body
+    .field
+      = f.label :current_password 
+      %i (Enter current password to confirm your changes)
+      = f.password_field :current_password, autocomplete: "current-password"
+    .field
+      = f.label :avatar, "Profile Picture"
+      = f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png,image/heic', direct_upload: true
+    .actions
+      = f.submit "Update", class:"button"
+    = link_to "Delete Account", registration_path(resource_name), data: { "turbo-method": :delete, turbo_confirm: "Notice this will delete all your things accross LionNav.com. Do you wish to continue?" }, class: "button"
+

@@ -1,0 +1,11 @@
+.callout
+  = link_to user do
+    - if user.avatar.attached?
+      = image_tag user.avatar.variant(resize_to_limit: [50, 50])
+    = user.username
+    %br/
+    = user.username
+    's
+    Profile
+    = link_to "Users Profile", user_path(user)
+    %br/

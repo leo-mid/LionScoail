@@ -1,0 +1,13 @@
+= turbo_stream_from "room_messages"
+.grid-x
+  .medium-4.cell.space
+    %h3 Send a message
+    = turbo_frame_tag "new_room_message" do
+      = render 'room_messages/form'
+    = link_to "Back", rooms_path, class: "button"
+  .medium-8.cell.space
+    %h1
+      This room is
+      = @room.name
+    = turbo_frame_tag dom_id(@room) do
+      = render @room_messages

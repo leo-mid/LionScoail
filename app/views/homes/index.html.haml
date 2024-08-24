@@ -1,0 +1,33 @@
+- if user_signed_in?
+  %h1 Welcome back
+  .grid-x
+    .medium-6.cell
+      %h3= current_user.username
+      %h5 You have
+      = render "shared/stats"
+    .medium-6.cell.space
+      %h5
+        Check out some
+        = link_to "posts,", posts_path
+        or look at
+        = link_to "your messages,", conversations_path
+        or join a 
+        = link_to "chat room", rooms_path
+        to see whats that thing everyone is talking about.
+        
+      = image_tag('lions.jpeg')
+
+-else
+  %h1 Welcome to Lion Social
+  %h5
+    Are you going to
+    = link_to 'Sign up', new_user_registration_path
+    or are you going to
+    = link_to 'Log in', new_user_session_path
+    ?
+  %br/
+  .grid-x
+    .medium-6.cell
+      = image_tag('home.jpeg')
+    .medium-6.cell.space
+      = image_tag('lion.png')
