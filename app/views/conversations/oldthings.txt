@@ -1,4 +1,0 @@
-- if !conversation.unread_message_count(current_user).zero?
-  (#{conversation.unread_message_count(current_user)})
-
-%h6= link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: user.id),'data-turbo-method': :post
