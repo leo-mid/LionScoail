@@ -24,10 +24,12 @@
             %a{:href => "#{following_user_path(@user)}"}
               #{@user.following.count}
           following
-    %br/
-    %p= @user.body
-    %br/
-    = render 'follow_form', user: @user if user_signed_in?
+    .grid-x 
+      .medium-2.cell
+        = render 'follow_form', user: @user if user_signed_in?
+      .medium-3.cell
+        - unless current_user == @user
+          = link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: @user.id),'data-turbo-method': :post, class: "button"
 .split-profile
 .grid-x
   - @user.posts.each do |post|

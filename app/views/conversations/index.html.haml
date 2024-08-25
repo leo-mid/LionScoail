@@ -12,7 +12,10 @@
                 - else
                   = image_tag ("profilepic.png"), :size => "50x20"
               .medium-9.cell
-                %h5= conversation.recipient(current_user).username
+                %h5
+                  = conversation.recipient(current_user).username
+                  - if !conversation.unread_message_count(current_user).zero?
+                    (#{conversation.unread_message_count(current_user)})
                 - if conversation.recipient(current_user).updated_at > 5.minutes.ago
                   %h6 Acitve Now
                 -else

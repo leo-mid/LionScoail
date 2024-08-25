@@ -9,11 +9,14 @@
             .grid-x
               .medium-3.cell
                 - if conversation.recipient(current_user).avatar.attached?
-                  = image_tag @conversation.recipient(current_user).avatar.variant(resize_to_fill: [50, 20])
+                  = image_tag @user.avatar.variant(resize_to_fill: [50, 20])
                 - else
                   = image_tag ("profilepic.png"), :size => "50x20"
               .medium-9.cell
-                %h5= conversation.recipient(current_user).username
+                %h5
+                  = conversation.recipient(current_user).username
+                  - if !conversation.unread_message_count(current_user).zero?
+                    (#{conversation.unread_message_count(current_user)})
                 - if conversation.recipient(current_user).updated_at > 5.minutes.ago
                   %h6 Acitve Now
                 -else

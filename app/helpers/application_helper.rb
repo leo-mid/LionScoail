@@ -24,10 +24,7 @@ module ApplicationHelper
   def check_convo_user
     if @conversation.sender_id == current_user.id or @conversation.receiver_id == current_user.id
     else
-      if current_user.role == "admin"
-      else
-        redirect_to root_path, notice: "You do not have access to this"
-      end
+      redirect_to root_path, notice: "You do not have access to this"
     end
   end
 
