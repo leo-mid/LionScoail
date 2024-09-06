@@ -30,6 +30,7 @@
       .medium-3.cell
         - unless current_user == @user
           = link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: @user.id),'data-turbo-method': :post, class: "button"
+    %p= @user.body
 .split-profile
 .grid-x
   - @user.posts.each do |post|
