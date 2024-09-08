@@ -7,10 +7,7 @@
           = link_to conversation_messages_path(conversation) do
             .grid-x
               .medium-3.cell
-                - if conversation.recipient(current_user).avatar.attached?
-                  = image_tag @user.avatar.variant(resize_to_fill: [50, 20])
-                - else
-                  = image_tag ("profilepic.png"), :size => "50x20"
+                = image_tag ("profilepic.png"), :size => "50x20"
               .medium-9.cell
                 %h5
                   = conversation.recipient(current_user).username
