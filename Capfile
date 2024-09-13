@@ -21,7 +21,7 @@ require 'capistrano/rbenv'
 require 'capistrano/yarn'
 
 set :rbenv_type, :user
-set :rbenv_ruby, '3.3.4'
+set :rbenv_ruby, '3.3.5'
 
 # Include tasks from other gems included in your Gemfile
 #
