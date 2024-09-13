@@ -1,5 +1,26 @@
-%h1 New post
-
-= render 'form'
-
-= link_to 'Back', posts_path, class:"button"
+.grid-x
+  .medium-3.cell
+    = render "buttons/posts/new"
+  .medium-9.cell
+    .center
+      %h1 New post
+    .center-box
+      .callout
+        = form_for @post do |f|
+          - if f.object.errors.any?
+            #error_explanation
+              %h2
+                = "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
+              %ul
+                - f.object.errors.full_messages.each do |message|
+                  %li
+                    = message
+          .field
+            %h4 Text
+            = f.text_area :content, rows: 2
+          %span.picture
+            (Picture or Video)
+            = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm'
+          %br/
+          .actions
+            = f.submit "Post", class: 'button'

@@ -11,7 +11,12 @@ class PostsController < ApplicationController
   def index
     @page_title = "Posts Lion social"
     @posts = Post.all.by_newest
-    @post = current_user.posts.new
+    @user = current_user
+  end
+
+  def following
+    @page_title = "Posts Lion social"
+    @posts = Post.all.by_newest.of_followed_users current_user.following
     @user = current_user
   end
 

@@ -1,0 +1,30 @@
+-# Everyone posts
+= link_to posts_path do
+  .unactive
+    .grid-x
+      .medium-2.cell
+        .icon
+          = image_tag("icons/icons8/people.png")
+      .medium-2.cell
+        .text-padding-home-icon
+          Everyones
+-# Following Posts
+= link_to fposts_path do
+  .unactive
+    .grid-x
+      .medium-2.cell
+        .icon
+          = image_tag("icons/icons8/home.png")
+      .medium-7.cell
+        .text-padding-crosses-icon
+          Following
+-# New Post
+= link_to new_post_path do
+  .active
+    .grid-x
+      .medium-2.cell
+        .icon
+          = image_tag("icons/icons8/plus.png")
+      .medium-5.cell
+        .text-padding-cross-icon
+          Create Post

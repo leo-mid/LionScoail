@@ -16,3 +16,39 @@ html body{
 .split-profile {
   padding-top: 5%;
 }
+
+// Buttons
+.active {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #ffe4c4;
+  padding-right: 10%;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+}
+
+a:hover {
+  color: #FF6633;
+}
+
+.text-padding-home-icon {
+  padding-top: 18%;
+}
+
+.unactive:hover {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: lighten(#ffe4c4, 95%);
+  padding-right: 10%;
+}
+
+.text-padding-cross-icon {
+  padding-top: 9%;
+}
+
+.text-padding-crosses-icon {
+  padding-top: 7%;
+}
