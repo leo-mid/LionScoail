@@ -1,9 +1,6 @@
 class AboutsController < ApplicationController
-  before_action :sitedisable_check
-  before_action :lionsocialdisable_check
   before_action :set_about, only: [:edit, :update, :destroy]
   before_action :check_admin, only: [:new, :destroy, :edit]
-  before_action :aboutdisable_check
 
   def new
     @about = About.new

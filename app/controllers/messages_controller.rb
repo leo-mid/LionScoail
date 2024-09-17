@@ -1,8 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :sitedisable_check
-  before_action :lionsocialdisable_check
   before_action :authenticate_user!
-  before_action :conversationdisable_check
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end

@@ -2,9 +2,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :is_post_user, only: [:edit]
-  before_action :postdisable_check
-  before_action :sitedisable_check
-  before_action :lionsocialdisable_check
 
   # GET /posts
   # GET /posts.json

@@ -2,9 +2,6 @@ class ErrorsController < ApplicationController
   before_action :set_error, only: [:destroy]
   before_action :check_admin, only: [:index, :destroy]
   before_action :authenticate_user!
-  before_action :sitedisable_check
-  before_action :lionsocialdisable_check
-  before_action :errordisable_check
 
   def new
     @error = Error.new
