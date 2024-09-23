@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   get :lionnav , "disables/lionnav"
   get :lionsocial, "disables/lionsocial"
   get :fposts , "posts/following"
+  get :jrooms , "rooms/joinedrooms"
 
 end
