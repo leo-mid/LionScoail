@@ -1,25 +1,24 @@
-- unless controller_name == "disables"
-  .title-bar{"data-hide-for" => "medium", "data-responsive-toggle" => "responsive-menu"}
-    %button.menu-icon{"data-toggle" => "responsive-menu", :type => "button"}
-    .title-bar-title Lion Social
-  #responsive-menu.top-bar
-    .top-bar-left
-      %ul.dropdown.menu{"data-dropdown-menu" => ""}
-        %li.menu
-          %h4= link_to 'Home', root_path
-    .top-bar-right
-      %ul.dropdown.menu{"data-dropdown-menu" => ""}
-        - if user_signed_in?
-          %li= link_to "Users", users_path
-          %li= link_to "Your Messages", conversations_path
-          %li= link_to "Chat Rooms", rooms_path
-          %li= link_to "Posts", posts_path
-          %li.has-submenu
-            %a{:href => "#0"} #{current_user.username}
-            %ul.submenu.menu.vertical{"data-submenu" => ""}
-              %li= link_to "Profile" , user_path(current_user)
-              %li= link_to 'Edit Profile', edit_user_path(current_user)
-              %li= link_to 'Sign Out', destroy_user_session_path, 'data-turbo-method': :delete
-        - else
-          %li= link_to 'Login', new_user_session_path
-          %li= link_to 'Sign up', new_user_registration_path
+.title-bar{"data-hide-for" => "medium", "data-responsive-toggle" => "responsive-menu"}
+  %button.menu-icon{"data-toggle" => "responsive-menu", :type => "button"}
+  .title-bar-title Lion Social
+#responsive-menu.top-bar
+  .top-bar-left
+    %ul.dropdown.menu{"data-dropdown-menu" => ""}
+      %li.menu
+        %h4= link_to 'Home', root_path
+  .top-bar-right
+    %ul.dropdown.menu{"data-dropdown-menu" => ""}
+      - if user_signed_in?
+        %li= link_to "Users", users_path
+        %li= link_to "Your Messages", conversations_path
+        %li= link_to "Chat Rooms", rooms_path
+        %li= link_to "Posts", posts_path
+        %li.has-submenu
+          %a{:href => "#0"} #{current_user.username}
+          %ul.submenu.menu.vertical{"data-submenu" => ""}
+            %li= link_to "Profile" , user_path(current_user)
+            %li= link_to 'Edit Profile', edit_user_path(current_user)
+            %li= link_to 'Sign Out', destroy_user_session_path, 'data-turbo-method': :delete
+      - else
+        %li= link_to 'Login', new_user_session_path
+        %li= link_to 'Sign up', new_user_registration_path

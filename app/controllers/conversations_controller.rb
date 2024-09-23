@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :messagingDisableCheck
 
   def index
     @page_title = "Conversations Lion social"

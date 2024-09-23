@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   include UsersHelper
   include ApplicationHelper
   include PostsHelper
+  before_action :lionsocialDisableCheck
+  before_action :lionnavDisabeCheck
   after_action :update_user_online, if: :user_signed_in?
 
   protected
