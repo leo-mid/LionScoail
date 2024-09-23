@@ -1,11 +1,10 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :messagingDisableCheck
-  before_action :check_convo_user
-
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end
+  before_action :check_convo_user
 
   def index
     @page_title = "Messages Lion social"
