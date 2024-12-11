@@ -14,13 +14,10 @@ class RoomMessagesController < ApplicationController
   def create
     @room_message = @room.room_messages.new(room_message_params)
     @room_message.user = current_user
-    @room_messages = @room.room_messages
     respond_to do |format|
       if @room_message.save
         format.html { redirect_to room_room_messages_path(@room) }
-        format.js { render :index, status: :created, location: room_room_messages_path(@room) }
-      else
-        format.html { render room_room_messages_path(@room)}
+        format.json { render :index, status: :created, location: room_room_messages_path(@room) }
       end
     end
   end
