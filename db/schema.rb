@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_06_154038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", precision: nil, null: false
+    t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", precision: nil, null: false
+    t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -64,13 +64,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.datetime "updated_at", null: false
     t.string "site"
     t.boolean "hidden"
-  end
-
-  create_table "badusers", force: :cascade do |t|
-    t.text "user"
-    t.text "what"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -176,19 +169,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
-  create_table "payments", force: :cascade do |t|
-    t.string "method"
-    t.date "experation"
-    t.boolean "expierd"
-    t.integer "digts"
-    t.float "samount"
-    t.float "camount"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_payments_on_user_id"
-  end
-
   create_table "picturescenes", force: :cascade do |t|
     t.string "name"
     t.bigint "movie_id"
@@ -203,19 +183,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
-  create_table "purchases", force: :cascade do |t|
-    t.string "name"
-    t.date "date"
-    t.float "amount"
-    t.boolean "recurring"
-    t.bigint "user_id", null: false
-    t.bigint "payment_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["payment_id"], name: "index_purchases_on_payment_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -244,21 +211,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_rooms_on_name", unique: true
-  end
-
-  create_table "savings", force: :cascade do |t|
-    t.string "account"
-    t.float "samount"
-    t.float "camount"
-    t.float "rate"
-    t.integer "years"
-    t.date "start"
-    t.date "end"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "intrest"
-    t.index ["user_id"], name: "index_savings_on_user_id"
   end
 
   create_table "scenes", force: :cascade do |t|
@@ -308,13 +260,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_10_175356) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "movies", "users"
-  add_foreign_key "payments", "users"
   add_foreign_key "picturescenes", "movies"
   add_foreign_key "posts", "users"
-  add_foreign_key "purchases", "payments"
-  add_foreign_key "purchases", "users"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
-  add_foreign_key "savings", "users"
   add_foreign_key "scenes", "movies"
 end
