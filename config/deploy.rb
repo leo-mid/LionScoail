@@ -42,6 +42,27 @@ namespace :yarn do
   end
 end
 
+namespace :rails do
+  desc "Remote console"
+  task :console do
+    on roles(:app) do |h|
+      run_interactively "bundle exec rails console #{fetch(:rails_env)}", h.user
+    end
+  end
+
+  desc "Remote dbconsole"
+  task :dbconsole do
+    on roles(:app) do |h|
+      run_interactively "bundle exec rails dbconsole #{fetch(:rails_env)}", h.user
+    end
+  end
+
+  def run_interactively(command, user)
+    info "Running `#{command}` as #{user}@#{host}"
+    exec %Q(ssh #{user}@#{host} -t "bash --login -c 'cd #{fetch(:deploy_to)}/current && #{command}'")
+  end
+end
+
 # Optionally, you can symlink your database.yml and/or secrets.yml file from the shared directory during deploy
 # This is useful if you don't want to use ENV variables
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
