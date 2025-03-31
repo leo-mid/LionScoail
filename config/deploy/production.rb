@@ -9,7 +9,7 @@
 
 # server 'ec2-18-227-79-63.us-east-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{app db web}
 
-server 'ssh.lionnav.com:25457', user: 'leo', roles: %w{app db web}
+server '10.0.0.31', user: 'leo', roles: %w{app db web}
 
 # role-based syntax
 # ==================
