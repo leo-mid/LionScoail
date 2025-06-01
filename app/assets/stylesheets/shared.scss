@@ -141,9 +141,9 @@ label {
 
 .user_avatars {
   overflow: auto;
-  margin-top: 10px;
+  margin-top: .625rem;
   .avatar {
-    margin: 1px 1px;
+    margin: .063rem .063rem;
   }
   a {
     padding: 0;
@@ -165,5 +165,5 @@ html body, h1, h2, h3, h4, h5, h6, p, li {
 .center-box {
   margin: auto;
   width: 70%;
-  padding: 10px;
+  padding: .625rem;
 }
