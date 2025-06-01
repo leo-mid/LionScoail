@@ -27,9 +27,6 @@
     .grid-x 
       .medium-2.cell
         = render 'follow_form', user: @user if user_signed_in?
-      .medium-3.cell
-        - unless current_user == @user
-          = link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: @user.id),'data-turbo-method': :post, class: "button"
     %p= @user.body
 .split-profile
 .grid-x
@@ -50,6 +47,3 @@
         data: { confirm: 'Are you sure? You do know this is not comeing back' }, class: "button" if current_user?(post.user)
         %br/
     %br
-%br/
-- if current_user.role == "admin"
-  %h6= link_to "Delete", user_path,data: { "turbo-method": :delete, turbo_confirm: "Really delete this user? What did they do." }, class: "button"

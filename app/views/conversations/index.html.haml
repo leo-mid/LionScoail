@@ -7,7 +7,10 @@
           = link_to conversation_messages_path(conversation) do
             .grid-x
               .medium-3.cell
-                = image_tag ("profilepic.png"), :size => "50x20"
+                - if conversation.recipient(current_user).avatar.attached?
+                  = image_tag conversation.recipient(current_user).avatar.variant(resize_to_fill: [50, 50])
+                - else 
+                  = image_tag ("profilepic.png"), :size => "50x20"
               .medium-9.cell
                 %h5
                   = conversation.recipient(current_user).username
@@ -19,7 +22,19 @@
                   %h6 Active #{time_ago_in_words(conversation.recipient(current_user).updated_at)} ago
     .medium-8.cell
       .callout.msg.blank
-        %h4 Click a message to begin
+        %h4 Start a new coversation
+        - @users.each do |user|
+          - if (user.following?(current_user) && current_user.following?(user)) && !(Conversation.between(current_user.id,user.id).present?)
+            .grid-x 
+              .medium-2.cell
+                - if user.avatar.attached?
+                  = image_tag user.avatar.variant(resize_to_fill: [50, 20])
+                - else
+                  = image_tag ("profilepic.png"), :size => "50x20"
+              .medium-9.cell
+                %h4= user.username
+                %h5= link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: user.id),'data-turbo-method': :post
+
 .content-mobile
   %h2 Messages
   - @conversations.each do |conversation|

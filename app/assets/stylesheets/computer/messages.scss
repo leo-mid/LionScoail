@@ -9,7 +9,10 @@
   border-top: 0;
   margin-bottom: 0;
   height: calc(100vh - 6.5rem);
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .callout.msg {
@@ -17,7 +20,10 @@
   border-radius: 0;
   border: 0;
   margin-bottom: 0;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .callout.msg_header {
@@ -39,5 +45,26 @@
   border-radius: 0;
   border: 0;
   margin-bottom: 0;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.message-bar {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+// Hide Scrolbar Chrome && Safari
+.callout.msg::-webkit-scrollbar {
+  display: none;
+}
+
+.callout.msg.blank::-webkit-scrollbar{
+  display: none;
+}
+
+.callout.convo::-webkit-scrollbar{
+  display: none;
 }
