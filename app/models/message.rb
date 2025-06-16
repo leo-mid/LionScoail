@@ -8,6 +8,8 @@ class Message < ApplicationRecord
 
   scope :by_newest, -> { self.order(created_at: :desc) }
 
+  encrypts :body
+
   private
     def message_time
       created_at.strftime("%d/%m/%y at %l:%M %p")
