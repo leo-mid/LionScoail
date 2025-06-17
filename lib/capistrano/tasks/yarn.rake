@@ -1,5 +1,5 @@
 namespace :custom do
-  desc 'run some rake db task'
+  desc 'running yarn'
   task :run_yarn do
     on roles(:app) do
       within release_path do
