@@ -1,6 +1,6 @@
 class ErrorsController < ApplicationController
-  before_action :set_error, only: [:destroy]
-  before_action :check_admin, only: [:index, :destroy]
+  before_action :set_error, only: [:destroy, :show]
+  before_action :check_admin, only: [:index, :destroy, :show]
   before_action :authenticate_user!
 
   def new
@@ -20,25 +20,39 @@ class ErrorsController < ApplicationController
     end
   end
 
- def index
-   @page_title = "Errors Lion social"
-   @errors = Error.all
-   @errors = Error.by_newest
- end
-
- def destroy
-   @error.destroy
-   flash[:notice] = "Error was deleted"
-   redirect_to errors_path
+  def index
+    @page_title = "Errors | Lion social"
+    @errors = Error.all
+    @errors = Error.by_newest
   end
 
- private
-  def set_error
-    @error = Error.find(params[:id])
+  def destroy
+    @error.destroy
+    flash[:notice] = "Error was deleted"
+    redirect_to errors_path
   end
 
-  def error_params
-    params.require(:error).permit(:error, :description, :site, :resolved)
+  def show
+
   end
 
+  def resolve
+    @update = Error.find(params[:updatecall])
+
+    if @update.resolved == true
+      @update.update_attribute(:resolved, false)
+    else
+      @update.update_attribute(:resolved, true)
+    end
+    redirect_to errors_path, notice: "Successfuly updated."
+  end
+
+  private
+    def set_error
+      @error = Error.find(params[:id])
+    end
+
+    def error_params
+      params.require(:error).permit(:error, :description, :site, :resolved, uploads: [])
+    end
 end

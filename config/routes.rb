@@ -31,9 +31,10 @@ Rails.application.routes.draw do
     resources :room_messages
   end
 
-  get :lionnav , "disables/lionnav"
+  get :lionnav, "disables/lionnav"
   get :lionsocial, "disables/lionsocial"
-  get :fposts , "posts/following"
-  get :jrooms , "rooms/joinedrooms"
+  get :fposts, "posts/following"
+  get :jrooms, "rooms/joinedrooms"
+  get :resolve, "errors/resolve"
 
 end

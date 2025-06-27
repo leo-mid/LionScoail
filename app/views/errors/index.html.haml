@@ -1,14 +1,19 @@
 %h1 All Errors
-- @errors.each do |error|
-  .callout
-    The Error Is =
-    = error.error
-    %br/
-    The Error's Description =
-    = error.description
-    %br/
-    How long ago the error was created at
-    = time_ago_in_words(error.created_at)
-    %br/
-    = link_to 'Delete', error_path(error),'data-turbo-method': :delete, data: {confirm: "Are you sure?"}, class: "dude"
-    %br/
+.grid-x
+  - @errors.each do |error|
+    - if error.site == "social" && error.resolved != true 
+      .medium-3.cell
+        .callout.errorpad
+          %p
+            The Error Is =
+            = error.error
+          %p
+            Error Number: 
+            = error.id
+          %p
+            Error reported:
+            = time_ago_in_words(error.created_at) 
+            ago
+            %br/
+            = link_to "More info", error_path(error), class: "underline"
+            = link_to "Resolved", resolve_path(:updatecall => error.id), data: {confirm: "Are you sure?"}, class: "underline"

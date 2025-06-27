@@ -1,0 +1,8 @@
+%h1 Viewing error: #{@error.id}
+
+- if @error.uploads.attached?
+  = @error.uploads.each do |attach|
+    - if attach.image?
+      = image_tag attach.variant(resize_to_fill: [200, 200])
+    - if attach.video?
+      = video_tag rails_blob_path(attach), controls: true, class: "small"

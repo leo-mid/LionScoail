@@ -6,11 +6,12 @@
 = form_for @error do |f|
   %p
     = f.label :Where_is_the_error?
-    %br/
     = f.text_field :error
   %p
-    = f.label :Give_A_Description_Of_The_Error
-    %br/
-    = f.text_area :description
+    = f.label :Give_a_description_of_the_error
+    = f.text_area :description, rows: 3
   %p
-    = f.submit class: "button"
+    = f.label :Upload_screenshots_or_videos
+    = f.file_field :uploads, multiple: true
+
+  = f.submit class: "button"
