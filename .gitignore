@@ -41,3 +41,5 @@ yarn-error.log
 
 .env
 .DS_Store
+
+/config/credentials/development.key
