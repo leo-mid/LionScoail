@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   }
 
   # All the resources
-  resources :posts
   resources :abouts
   resources :errors
   resources :relationships, only: [:create, :destroy]
@@ -14,9 +13,8 @@ Rails.application.routes.draw do
 
   # All resources with do and end
   resources :users do
-    member do
-      get :following, :followers
-    end
+    get :following, on: :member
+    get :followers, on: :member
   end
 
   resources :posts do
@@ -31,10 +29,10 @@ Rails.application.routes.draw do
     resources :room_messages
   end
 
-  get :lionnav, "disables/lionnav"
-  get :lionsocial, "disables/lionsocial"
-  get :fposts, "posts/following"
-  get :jrooms, "rooms/joinedrooms"
-  get :resolve, "errors/resolve"
+  get "disabled/lionnav", to: "disables#lionnav"
+  get "disabled/social", to: "disables#lionsocial"
+  get "post/following", to: "posts#following"
+  get "rooms/joined", to: "rooms#joinedrooms"
+  get "errors/resolved", to: "errors#resolve"
 
 end
