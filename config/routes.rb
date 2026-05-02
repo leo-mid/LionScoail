@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   get "disabled/lionnav", to: "disables#lionnav"
   get "disabled/social", to: "disables#lionsocial"
   get "post/following", to: "posts#following"
-  get "rooms/joined", to: "rooms#joinedrooms"
+  get "room/joined", to: "rooms#joinedrooms"
   get "errors/resolved", to: "errors#resolve"
 
 end

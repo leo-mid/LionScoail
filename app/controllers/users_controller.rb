@@ -17,8 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
-    @posts = @user.posts
-    @posts = Post.by_newest
+    @posts = @user.posts.by_newest
     @page_title = "#{@user.username}'s profile | Lion Social"
   end
 

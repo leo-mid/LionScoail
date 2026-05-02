@@ -30,13 +30,13 @@
     %p= @user.body
 .split-profile
 .grid-x
-  - @user.posts.each do |post|
+  - @posts.each do |post|
     .medium-4.cell.space
       .callout
         .center
           - if post.picture.attached?
             - if post.picture.image?
-              .thumbnail= image_tag post.picture.variant(resize: "350x350")
+              .thumbnail= image_tag post.picture.variant(resize_to_limit: [350, 350])
             - if post.picture.video?
               = video_tag rails_blob_path(post.picture), controls: true, class: "small"
         %br/
