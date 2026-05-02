@@ -48,7 +48,7 @@ env:
     POSTGRES_USER: deploy
     POSTGRES_DB: DataLionNav_production
   secret:
-    - <%= ENV["POSTGRES_PASSWORD"] %> # Stored in .kamal/secrets
+    - POSTGRES_PASSWORD # Stored in .kamal/secrets
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
