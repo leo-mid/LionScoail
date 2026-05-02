@@ -47,3 +47,4 @@ yarn-error.log
 /config/credentials/production.key
 
 .kamal/secrets
+/.kamal/secerts
