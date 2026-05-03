@@ -82,4 +82,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the Rails server. Kamal proxy forwards to config/deploy.yml proxy.app_port.
 EXPOSE 5002
-CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "5002"]
