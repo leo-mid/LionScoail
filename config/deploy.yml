@@ -7,7 +7,10 @@ image: leo-mid/lion_social
 # Deploy to these servers.
 servers:
   web:
-    - lionnav.tail10c7a0.ts.net
+    hosts:
+      - lionnav.tail10c7a0.ts.net
+    options:
+      "add-host": "host.docker.internal:host-gateway"
 
   #   hosts:
   #     - 192.168.0.1
@@ -42,13 +45,7 @@ builder:
   #   RUBY_VERSION: <%= ENV["RBENV_VERSION"] || ENV["rvm_ruby_string"] || "#{RUBY_ENGINE}-#{RUBY_ENGINE_VERSION}" %>
 
 env:
-  clear:
-    # Use the IP address or hostname of your non-Docker DB
-    DB_HOST: localhost
-    POSTGRES_USER: deploy
-    POSTGRES_DB: DataLionNav_production
   secret:
-    - POSTGRES_PASSWORD
     - RAILS_MASTER_KEY
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).

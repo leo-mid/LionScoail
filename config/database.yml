@@ -30,6 +30,7 @@ production:
   primary:
     adapter: postgresql
     encoding: utf8
+    host: <%= Rails.application.credentials.dig(:database, :host) %>
     database: <%= Rails.application.credentials.dig(:database, :dbname) %>
     username: <%= Rails.application.credentials.dig(:database, :username) %>
     password: <%= Rails.application.credentials.dig(:database, :password) %>
