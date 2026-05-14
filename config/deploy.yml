@@ -8,7 +8,7 @@ image: leo-mid/lion_social
 servers:
   web:
     hosts:
-      - lionnav.tail10c7a0.ts.net
+      - archlinux.tail10c7a0.ts.net
     options:
       "add-host": "host.docker.internal:host-gateway"
 
@@ -69,7 +69,7 @@ env:
 # Use a different ssh user than root
 #
 ssh:
-  user: deploy
+  user: leo
   port: 25457
 
 # Use a persistent storage volume.
@@ -109,7 +109,7 @@ accessories:
   #     - data:/var/lib/mysql
   redis:
     image: redis:8
-    host: lionnav.tail10c7a0.ts.net
+    host: archlinux.tail10c7a0.ts.net
     port: 6379
     directories:
       - data:/data
