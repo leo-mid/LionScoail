@@ -10,7 +10,7 @@ servers:
     hosts:
       - archlinux.tail10c7a0.ts.net
     options:
-      "add-host": "host.docker.internal:host-gateway"
+      "add-host": "host.docker.internal:172.20.0.1"
 
   #   hosts:
   #     - 192.168.0.1
