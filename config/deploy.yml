@@ -51,6 +51,8 @@ builder:
 env:
   secret:
     - RAILS_MASTER_KEY
+  clear:
+    PORT: 5002
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
