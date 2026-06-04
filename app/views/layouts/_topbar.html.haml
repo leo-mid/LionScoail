@@ -1,26 +1,39 @@
-.title-bar{"data-hide-for" => "medium", "data-responsive-toggle" => "responsive-menu"}
-  %button.menu-icon{"data-toggle" => "responsive-menu", :type => "button"}
-  .title-bar-title Lion Social
-#responsive-menu.top-bar
-  .top-bar-left
-    %ul.dropdown.menu{"data-dropdown-menu" => ""}
-      %li.menu
-        %h4= link_to 'Home', root_path
-  .top-bar-right
-    %ul.dropdown.menu{"data-dropdown-menu" => ""}
-      - if user_signed_in?
-        %li= link_to "Posts", posts_path
-        .content-desktop
-          %li= link_to "Messages", conversations_path
-        - if current_user.role == "admin"
-          %li= link_to "Chat Rooms", rooms_path
-        %li= link_to "Users", users_path
-        %li.has-submenu
-          %a{:href => "#0"} #{current_user.username}
-          %ul.submenu.menu.vertical{"data-submenu" => ""}
-            %li= link_to "Profile" , user_path(current_user)
-            %li= link_to 'Edit Profile', edit_user_path(current_user)
-            %li= link_to 'Sign Out', destroy_user_session_path, 'data-turbo-method': :delete
-      - else
-        %li= link_to 'Login', new_user_session_path
-        %li= link_to 'Sign up', new_user_registration_path
+%nav.navbar.navbar-expand-lg.navbar-dark.navbar-custom.sticky-top
+  .container-xl
+    = link_to "Lion Social", root_path, class: "navbar-brand fw-bold"
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+        - if user_signed_in?
+          %li.nav-item= link_to "Posts", posts_path, class: "nav-link"
+          %li.nav-item.dropdown
+            %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+              Messaging
+            %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "adminDropdown"}
+              %li.nav-item= link_to "Everyone", users_path, class: "dropdown-item"
+              %li.nav-item= link_to "Dms", conversations_path, class: "dropdown-item"
+              - if current_user.role == "admin"
+                %li.nav-item= link_to "Chat Rooms", rooms_path, class: "dropdown-item"
+          -# - if current_user.role == "admin"
+          -#   %li.nav-item.dropdown
+          -#     %a#adminDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+          -#       Admin
+          -#     %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "adminDropdown"}
+          -#       %li= link_to "Main Stuff", admin_path, class: "dropdown-item"
+          -#       %li= link_to "New School", new_school_path, class: "dropdown-item"
+          -#       - if current_user.role == "Founder"
+          -#         %li= link_to "New Announcement", new_announcement_path, class: "dropdown-item"
+          -#         %li= link_to "Disable Features", edit_disable_path(Disable.first), class: "dropdown-item"
+          %li.nav-item.dropdown
+            %a#userDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+              #{current_user.username}
+            %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "userDropdown"}
+              %li= link_to 'Profile', user_path(current_user), class: "dropdown-item"
+              %li= link_to 'Edit Profile', edit_user_path(current_user), class: "dropdown-item"
+              %li
+                %hr.dropdown-divider
+              %li= link_to 'Sign Out', destroy_user_session_path, 'data-turbo-method': :delete, class: "dropdown-item text-danger"
+        - else
+          %li.nav-item= link_to 'Login', new_user_session_path, class: "nav-link"
+          %li.nav-item= link_to 'Sign up', new_user_registration_path, class: "btn btn-light ms-lg-2 mt-2 mt-lg-0"

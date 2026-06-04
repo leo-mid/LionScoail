@@ -1,3 +1,3 @@
-web: bundle exec rails server -p 5002
+web: env RUBY_DEBUG_OPEN=true bin/rails server -p 5002
 js: yarn build --watch
-css: yarn build:css --watch
+css: yarn watch:css
