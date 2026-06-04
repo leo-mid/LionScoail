@@ -17,22 +17,22 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap'
 
-# Background Stuff
-gem "sidekiq", ">= 6.5.10"
-gem 'redis'
+gem 'benchmark', '~> 0.5.0'
 
-gem "net-pop", require: false
+gem 'kamal', '~> 2.11'
+
+# Background Stuff
+gem 'redis'
+gem 'sidekiq', '>= 6.5.10'
+
+gem 'net-pop', require: false
 
 # Html to Haml gem
-gem 'html2haml'
 gem 'haml-rails', '~> 2.0.1'
+gem 'html2haml'
 
-# Foundtion Gems
-gem 'foundation-rails'
-gem 'autoprefixer-rails'
-
-gem 'jsbundling-rails'
 gem 'cssbundling-rails'
+gem 'jsbundling-rails'
 
 gem 'friendly_id'
 
@@ -41,25 +41,25 @@ gem 'friendly_id'
 # gem "kredis"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+gem 'stimulus-rails'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-gem "sassc-rails"
+gem 'sassc-rails'
+gem 'sprockets-rails'
 
 # devise gem
 gem 'devise', '~> 5'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
-gem 'image_processing'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 gem 'fastimage'
+gem 'image_processing'
+gem 'mini_magick', '~> 4.8'
 
+gem 'childprocess', '~> 4'
 gem 'hirb'
-gem "childprocess", '~> 4'
-gem "nokogiri", ">= 1.12.5"
+gem 'nokogiri', '>= 1.12.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -69,14 +69,14 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.2.1'
+  gem 'web-console', '>= 3.3.0'
   # Better Chrash things
   gem 'better_errors'
   gem 'binding_of_caller'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '>= 3'
   gem 'foreman'
+  gem 'spring', '>= 3'
 end
 
 group :test do
@@ -89,7 +89,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "benchmark", "~> 0.5.0"
-
-gem "kamal", "~> 2.11"
