@@ -1,4 +1,9 @@
-- flash.each do |name, msg|
-  .callout
-    %ul
-      %li= msg
+.container-fluid.mt-3
+  - flash.each do |name, msg|
+    - alert_class = case name.to_s
+      - when 'notice' then 'alert-success'
+      - when 'alert', 'error' then 'alert-danger'
+      - else "alert-#{name}"
+    .alert.alert-dismissible.fade.show{class: alert_class, role: "alert"}
+      = msg
+      %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}

@@ -1,15 +1,16 @@
-.grid-x 
-  .medium-2.collum
-  .medium-8.collum
-    .center
+.row
+  .col-md-8.offset-md-2
+    .text-center
       - @abouts.each do |about|
         - if about.site == "social" and about.hidden == false
-          .callout
-            %h1= about.title
-            %h5= about.toppara
-            %h5= about.change
-            %h6= about.list1
-            %h6= about.list2
-            %h6= about.list3
-            %p= link_to "#{about.githubtitle}", about.linkgithub, target: :_blank
-            %h5= about.buttom
+          .card.mb-4
+            .card-body
+              %h1.card-title= about.title
+              %h5.card-text= about.toppara
+              %h5.card-text= about.change
+              %ul.list-unstyled
+                %li= about.list1
+                %li= about.list2
+                %li= about.list3
+              %p= link_to "#{about.githubtitle}", about.linkgithub, target: :_blank, class: "btn btn-dark"
+              %h5.card-text= about.buttom

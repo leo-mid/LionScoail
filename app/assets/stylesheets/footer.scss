@@ -1,32 +1,15 @@
-footer {
-  position: fixed;
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #999;
-  bottom: 0;
-  width: 97%;
-}
+.footer {
+  background-color: $white;
+  border-top: 1px solid rgba($black, 0.05);
+  box-shadow: 0 -2px 10px rgba($black, 0.02);
 
-footer a {
- color: #555;
-}
+  a {
+    color: $gray-600;
+    font-weight: 500;
+    transition: color 0.15s ease-in-out;
 
-footer a:hover {
- color: #222;
-}
-
-footer small {
- float: left;
-}
-
-footer ul {
- float: right;
- list-style: none;
- margin-left: 10px;
-}
-
-footer ul li {
- float: left;
- margin-left: 10px;
+    &:hover {
+      color: $primary;
+    }
+  }
 }

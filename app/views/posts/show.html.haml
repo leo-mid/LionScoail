@@ -1,15 +1,20 @@
-%h3
-  Comments (#{@post.comments.count})
+.row.justify-content-center
+  .col-12.col-lg-8
+    %h3.mb-4
+      Comments (#{@post.comments.count})
 
-= render 'comments/form'
+    .card.mb-4
+      .card-body
+        = render 'comments/form'
 
-- @post.comments.each do |comment|
-  - if comment.persisted?
-    .callout
-      = comment.user.username
-      %br/
-      = comment.body
-      %br/
-      = link_to 'Delete', [comment.post, comment], :method => :delete, data: { confirm: 'Are you sure?' } if current_user == comment.user
+    - @post.comments.each do |comment|
+      - if comment.persisted?
+        .card.mb-2
+          .card-body
+            %h6.card-subtitle.mb-2.text-muted= comment.user.username
+            %p.card-text= comment.body
+            - if current_user == comment.user
+              = link_to 'Delete', [comment.post, comment], data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger"
 
-= link_to 'Back', posts_path, class: "button"
+    .mt-4
+      = link_to 'Back', posts_path, class: "btn btn-secondary"

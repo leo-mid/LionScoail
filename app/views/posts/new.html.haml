@@ -1,26 +1,18 @@
-.grid-x
-  .medium-3.cell
+.row
+  .col-md-3
     = render "buttons/posts/new"
-  .medium-9.cell
-    .center
+  .col-md-9
+    .text-center
       %h1 New post
-    .center-box
-      .callout
-        = form_for @post do |f|
-          - if f.object.errors.any?
-            #error_explanation
-              %h2
-                = "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
-              %ul
-                - f.object.errors.full_messages.each do |message|
-                  %li
-                    = message
-          .field
-            %h4 Text
-            = f.text_area :content, rows: 2
-          %span.picture
-            (Picture or Video)
-            = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm'
-          %br/
-          .actions
-            = f.submit "Post", class: 'button'
+    .card
+      .card-body
+        = simple_form_for @post do |f|
+          = f.error_notification
+          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+          .form-inputs
+            = f.input :content, label: "Text", input_html: { rows: 2 }
+            = f.input :picture, as: :file, label: "Picture or Video", input_html: { accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm' }
+
+          .form-actions.mt-3
+            = f.submit "Post", class: 'btn btn-primary'

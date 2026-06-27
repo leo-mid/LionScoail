@@ -1,9 +1,9 @@
-.grid-x
-  .medium-3.cell
+.row
+  .col-md-3
     = render "buttons/chatrooms/main"
-  .medium-9.cell
-    .center
+  .col-md-9
+    .text-center
       %h4 Join any chat room that is shown on the left or make your own.
-    %br/
-    %div{id: "rooms"}
+    %hr
+    %div{id: "rooms", class: "row row-cols-1 row-cols-md-2 g-4"}
       = render @rooms

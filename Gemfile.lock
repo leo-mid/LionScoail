@@ -363,6 +363,9 @@ GEM
       logger (>= 1.7.0)
       rack (>= 3.2.0)
       redis-client (>= 0.29.0)
+    simple_form (5.4.1)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     spring (4.6.0)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
@@ -458,6 +461,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   sidekiq (>= 6.5.10)
+  simple_form
   spring (>= 3)
   sprockets-rails
   stimulus-rails

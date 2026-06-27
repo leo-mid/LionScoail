@@ -1,11 +1,17 @@
-%h1 Tables
-.grid-x
-  .medium-4.cell.space
-    %h3 User tables for everything
-    = link_to "Users", admins_users_path, class: "button"
-  .medium-4.cell.space
-    %h3 Conversations on Lion Social
-    = link_to "Conversations", admins_conversations_path, class: "button"
-  .medium-4.cell.space
-    %h3 Posts for Lion Social
-    = link_to "Posts", admins_posts_path, class: "button"
+%h1.mb-4 Admin Tables
+.row
+  .col-md-4.mb-3
+    .card.h-100
+      .card-body.text-center
+        %h3 User tables for everything
+        = link_to "Users", admins_users_path, class: "btn btn-primary"
+  .col-md-4.mb-3
+    .card.h-100
+      .card-body.text-center
+        %h3 Conversations on Lion Social
+        = link_to "Conversations", admins_conversations_path, class: "btn btn-primary"
+  .col-md-4.mb-3
+    .card.h-100
+      .card-body.text-center
+        %h3 Posts for Lion Social
+        = link_to "Posts", admins_posts_path, class: "btn btn-primary"

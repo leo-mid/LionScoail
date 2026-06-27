@@ -1,8 +1,7 @@
-.content-desktop
-  %footer.footer
-    %small
-      %h3 #{link_to "LionNav", "https://lionnav.com", target: :blank}
-    %nav
-      %ul
-        %li= link_to "Report a Error", new_error_path
-        %li= link_to "About", abouts_path
+%footer.footer.mt-auto.py-4.bg-soft-orange.border-top{style: "border-top-color: rgba(230, 126, 34, 0.3) !important;"}
+  .container.text-center
+    %span.text-muted
+      #{link_to "LionNav", "https://lionnav.com", target: :blank, class: "text-decoration-none fw-bold"}
+    %ul.list-inline.mb-0
+      %li.list-inline-item= link_to "Report an Error", new_error_path, class: "text-decoration-none"
+      %li.list-inline-item= link_to "About", abouts_path, class: "text-decoration-none"

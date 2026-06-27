@@ -1,19 +1,12 @@
-%h2 Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { 'data-turbo-method': :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-      %br/
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Change my password", class:"button"
-= render "devise/shared/links"
+.row.justify-content-center
+  .col-12.col-md-8.col-lg-6
+    %h2.fw-bold.text-center Change your password
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { 'data-turbo-method': :put }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      = f.hidden_field :reset_password_token
+      .alert.alert-info
+        = f.input :password, label: "New password", autofocus: true, autocomplete: "new-password", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        = f.input :password_confirmation, label: "Confirm new password", autocomplete: "new-password"
+        .actions.mt-3
+          = f.submit "Change my password", class: "btn btn-primary"
+    = render "devise/shared/links"

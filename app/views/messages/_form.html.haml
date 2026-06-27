@@ -1,5 +1,3 @@
-= form_with model: [@conversation, @message] do |f|
+= simple_form_for [@conversation, @message] do |f|
   .message-bar
-    .field
-      = f.text_field  :body, placeholder: "Send message"
-      //= f.submit "Send", class: "button"
+    = f.input :body, label: false, placeholder: "Send message", wrapper: false, input_html: { class: "form-control" }

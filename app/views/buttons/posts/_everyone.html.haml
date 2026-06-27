@@ -1,30 +1,22 @@
--# Everyone posts
-= link_to posts_path do
-  .active
-    .grid-x
-      .medium-2.cell
+.list-group.flex-row.flex-md-column.mb-3.overflow-auto.flex-nowrap
+  = link_to posts_path, class: "list-group-item list-group-item-action active flex-fill text-nowrap" do
+    .row.g-0.align-items-center
+      .col-auto.me-2
         .icon
-          = image_tag("icons/icons8/people.png")
-      .medium-2.cell
-        .text-padding-home-icon
-          Everyones
--# Following Posts
-= link_to post_following_path do
-  .unactive
-    .grid-x
-      .medium-2.cell
+          = image_tag("icons/icons8/people.png", size: "24x24")
+      .col
+        Everyones
+  = link_to post_following_path, class: "list-group-item list-group-item-action flex-fill text-nowrap" do
+    .row.g-0.align-items-center
+      .col-auto.me-2
         .icon
-          = image_tag("icons/icons8/home.png")
-      .medium-7.cell
-        .text-padding-crosses-icon
-          Following
--# New Post
-= link_to new_post_path do
-  .unactive
-    .grid-x
-      .medium-2.cell
+          = image_tag("icons/icons8/home.png", size: "24x24")
+      .col
+        Following
+  = link_to new_post_path, class: "list-group-item list-group-item-action flex-fill text-nowrap" do
+    .row.g-0.align-items-center
+      .col-auto.me-2
         .icon
-          = image_tag("icons/icons8/plus.png")
-      .medium-5.cell
-        .text-padding-cross-icon
-          Create Post
+          = image_tag("icons/icons8/plus.png", size: "24x24")
+      .col
+        Create Post

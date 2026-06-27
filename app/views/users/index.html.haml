@@ -1,7 +1,12 @@
-%h1 Every User
-.grid-x
+%h1.mb-4.text-center Every User
+.row.row-cols-2.row-cols-md-3.row-cols-lg-4.g-4
   - @users.each do |user|
-    .medium-4.cell.space
-      .callout
-        %h6= user.username
-        %p= link_to "#{user.username}'s Profile", user_path(user)
+    .col
+      .card.h-100
+        .card-body.text-center.p-3
+          - if user.avatar.attached?
+            = image_tag user.avatar.variant(resize_to_fill: [80, 80]), class: "rounded-circle mb-2"
+          - else
+            = image_tag ("profilepic.png"), size: "80x80", class: "rounded-circle mb-2"
+          %h5.card-title= user.username
+          %p.card-text= link_to "View Profile", user_path(user), class: "btn btn-outline-primary btn-sm"

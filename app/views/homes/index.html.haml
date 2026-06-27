@@ -1,33 +1,67 @@
 - if user_signed_in?
-  %h1 Welcome back
-  .grid-x
-    .medium-6.cell
-      %h3= current_user.username
-      %h5 You have
-      = render "shared/stats"
-    .medium-6.cell.space
-      %h5
-        Check out some
-        = link_to "posts,", posts_path
-        or look at
-        = link_to "your messages,", conversations_path
-        or join a 
-        = link_to "chat room", rooms_path
-        to see whats that thing everyone is talking about.
-        
-      = image_tag('lions.jpeg')
+  .container.py-4
+    %h1.mb-4.text-center Welcome back, #{current_user.username}!
+    .row
+      .col-md-4.mb-4
+        .card.shadow-sm.h-100
+          .card-body.text-center
+            - if current_user.avatar.attached?
+              = image_tag current_user.avatar.variant(resize_to_fill: [100, 100]), class: "rounded-circle mb-3 shadow-sm"
+            - else
+              = image_tag "profilepic.png", size: "100x100", class: "rounded-circle mb-3 shadow-sm"
+            %h3.card-title= current_user.username
+            .mt-3
+              = render "shared/stats"
+            .mt-4
+              = link_to "View Profile", user_path(current_user), class: "btn btn-outline-primary btn-sm w-100"
+      
+      .col-md-8.mb-4
+        .card.shadow-sm.h-100
+          .card-body
+            %h5.card-title.mb-4 Getting Started
+            .list-group.list-group-flush
+              = link_to posts_path, class: "list-group-item list-group-item-action d-flex align-items-center py-3" do
+                .icon.me-3
+                  = image_tag("icons/icons8/people.png", size: "32x32")
+                %div
+                  %h6.mb-0 Explore Posts
+                  %small.text-muted See what everyone is talking about
+              
+              = link_to conversations_path, class: "list-group-item list-group-item-action d-flex align-items-center py-3" do
+                .icon.me-3
+                  = image_tag("icons/icons8/home.png", size: "32x32")
+                %div
+                  %h6.mb-0 Your Messages
+                  %small.text-muted Connect with your friends
+              
+              = link_to rooms_path, class: "list-group-item list-group-item-action d-flex align-items-center py-3" do
+                .icon.me-3
+                  = image_tag("icons/icons8/plus.png", size: "32x32")
+                %div
+                  %h6.mb-0 Chat Rooms
+                  %small.text-muted Join a community conversation
 
--else
-  %h1 Welcome to Lion Social
-  %h5
-    Are you going to
-    = link_to 'Sign up', new_user_registration_path
-    or are you going to
-    = link_to 'Log in', new_user_session_path
-    ?
-  %br/
-  .grid-x
-    .medium-6.cell
-      = image_tag('home.jpeg')
-    .medium-6.cell.space
-      = image_tag('lion.png')
+- else
+  .bg-soft-orange.rounded-3.p-4.p-md-5.mb-4.mt-4.text-center.shadow-sm.border{style: "border-color: rgba(230, 126, 34, 0.3) !important;"}
+    .container-fluid.py-4.py-md-5
+      %h1.display-5.display-md-4.fw-bold Welcome to Lion Social
+      %p.col-md-8.fs-5.fs-md-4.mx-auto.text-muted
+        Connect with friends, share your thoughts, and join the conversation in our vibrant community.
+      .d-grid.gap-2.d-sm-flex.justify-content-sm-center.mt-4
+        = link_to 'Sign up now', new_user_registration_path, class: "btn btn-primary btn-lg px-4 gap-3"
+        = link_to 'Log in', new_user_session_path, class: "btn btn-outline-primary btn-lg px-4"
+
+  .container
+    .row.align-items-center.py-5
+      .col-lg-6
+        %h2.fw-bold Share your moments
+        %p.lead.text-muted Post updates, photos, and videos to your profile and stay connected with your followers.
+      .col-lg-6
+        = image_tag('home.jpeg', class: "img-fluid rounded shadow-lg")
+    
+    .row.align-items-center.py-5.flex-lg-row-reverse
+      .col-lg-6
+        %h2.fw-bold Join Chat Rooms
+        %p.lead.text-muted Real-time conversations with people who share your interests. Create your own room or join an existing one.
+      .col-lg-6
+        = image_tag('lion.png', class: "img-fluid rounded shadow-lg")

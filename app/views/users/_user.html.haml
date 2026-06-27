@@ -1,11 +1,10 @@
-.callout
-  = link_to user do
-    - if user.avatar.attached?
-      = image_tag user.avatar.variant(resize_to_limit: [50, 50])
-    = user.username
-    %br/
-    = user.username
-    's
-    Profile
-    = link_to "Users Profile", user_path(user)
-    %br/
+.card.mb-2
+  .card-body
+    .d-flex.align-items-center
+      - if user.avatar.attached?
+        = image_tag user.avatar.variant(resize_to_limit: [50, 50]), class: "rounded-circle me-3"
+      - else
+        = image_tag "profilepic.png", size: "50x50", class: "rounded-circle me-3"
+      %div
+        %h6.mb-0= user.username
+        = link_to "View Profile", user_path(user), class: "btn btn-link btn-sm p-0 text-decoration-none"

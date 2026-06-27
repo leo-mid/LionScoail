@@ -1,39 +1,36 @@
 = turbo_stream_from "messages"
-.grid-x
-  .medium-4.cell
-    .content-desktop
-      .callout.convo
-        %h4 Messages
+.row.g-3
+  .col-12.col-lg-4
+    .card.h-100
+      .card-header
+        %h4.mb-0 Messages
+      .list-group.list-group-flush.overflow-auto{style: "max-height: 80vh;"}
         - @conversations.each do |conversation|
-          = link_to conversation_messages_path(conversation) do
-            .grid-x
-              .medium-3.cell
+          = link_to conversation_messages_path(conversation), class: "list-group-item list-group-item-action #{'active' if conversation == @conversation}" do
+            .row.align-items-center
+              .col-3
                 - if conversation.recipient(current_user).avatar.attached?
-                  = image_tag conversation.recipient(current_user).avatar.variant(resize_to_fill: [50, 50])
-                - else 
-                  = image_tag ("profilepic.png"), :size => "50x20"
-              .medium-9.cell
-                %h5
+                  = image_tag conversation.recipient(current_user).avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle"
+                - else
+                  = image_tag ("profilepic.png"), size: "50x50", class: "rounded-circle"
+              .col-9
+                %h6.mb-0
                   = conversation.recipient(current_user).username
                   - if !conversation.unread_message_count(current_user).zero?
-                    (#{conversation.unread_message_count(current_user)})
-                - if conversation.recipient(current_user).updated_at > 5.minutes.ago
-                  %h6 Acitve Now
-                -else
-                  %h6 Active #{time_ago_in_words(conversation.recipient(current_user).updated_at)} ago
-  .medium-8.cell
-    .callout.msg_header
-      .content-desktop
-        .grid-x
-          .medium-11.cell
-            %h5= @conversation.recipient(current_user).username
-          .medium-1.cell
-            = link_to "Delete", @conversation ,data: { "turbo-method": :delete, turbo_confirm: 'Are you sure? This will delete it on both ends.' }
-      .content-mobile
-        %h3= @conversation.recipient(current_user).username
-    .callout.msg
-      = turbo_frame_tag dom_id(@conversation) do
-        = render @messages
-    .msg_send
-      = turbo_frame_tag "new_message" do
-        = render 'messages/form'
+                    %span.badge.bg-danger.rounded-pill #{conversation.unread_message_count(current_user)}
+                %small
+                  - if conversation.recipient(current_user).updated_at > 5.minutes.ago
+                    %span.text-success Active Now
+                  - else
+                    Active #{time_ago_in_words(conversation.recipient(current_user).updated_at)} ago
+  .col-12.col-lg-8
+    .card.h-100
+      .card-header.d-flex.justify-content-between.align-items-center
+        %h5.mb-0= @conversation.recipient(current_user).username
+        = link_to "Delete", @conversation, class: "btn btn-sm btn-outline-danger", data: { "turbo-method": :delete, turbo_confirm: 'Are you sure? This will delete it on both ends.' }
+      .card-body.overflow-auto{style: "height: 60vh;"}
+        = turbo_frame_tag dom_id(@conversation) do
+          = render @messages
+      .card-footer
+        = turbo_frame_tag "new_message" do
+          = render 'messages/form'

@@ -1,8 +1,8 @@
-.grid-x
-  .medium-3.cell 
-  .medium-6.cell
-    .callout
-      %h1 Report a Error
-      = render 'form'
-      %p
-        = link_to 'Back', root_path, class: "button"
+.row
+  .col-md-6.offset-md-3
+    .card
+      .card-body
+        %h1.card-title Report an Error
+        = render 'form'
+        .mt-3
+          = link_to 'Back', root_path, class: "btn btn-secondary"

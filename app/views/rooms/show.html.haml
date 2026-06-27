@@ -1,16 +1,21 @@
-.grid-x
-  .medium-4.cell.space
-    %h3= @user.username
-    - if @user.avatar.attached?
-      = image_tag @user.avatar.variant(resize_to_fill: [150, 150])
-    %section.stats= render 'shared/stats'
-    %br/
-    = render 'room_messages/form'
-    %br/
-    = render partial: 'rooms'
-  .medium-8.cell.space
-    %h1
-      This room is
-      = @room.name
-    = turbo_frame_tag dom_id(@room) do
-      = render @room_messages
+.row
+  .col-md-4
+    .card.mb-4
+      .card-body
+        %h3= @user.username
+        - if @user.avatar.attached?
+          = image_tag @user.avatar.variant(resize_to_fill: [150, 150]), class: "img-thumbnail rounded mb-3"
+        .stats= render 'shared/stats'
+        %hr
+        = render 'room_messages/form'
+        %hr
+        = render partial: 'rooms'
+  .col-md-8
+    .card
+      .card-header
+        %h1.h3.mb-0
+          This room is:
+          = @room.name
+      .card-body.overflow-auto{style: "max-height: 70vh;"}
+        = turbo_frame_tag dom_id(@room) do
+          = render @room_messages

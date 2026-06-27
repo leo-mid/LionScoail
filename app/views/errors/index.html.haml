@@ -1,19 +1,16 @@
-%h1 All Errors
-.grid-x
+%h1.mb-4 All Errors
+.row
   - @errors.each do |error|
     - if error.site == "social" && error.resolved != true 
-      .medium-3.cell
-        .callout.errorpad
-          %p
-            The Error Is =
-            = error.error
-          %p
-            Error Number: 
-            = error.id
-          %p
-            Error reported:
-            = time_ago_in_words(error.created_at) 
-            ago
-            %br/
-            = link_to "More info", error_path(error), class: "underline"
-            = link_to "Resolved", resolve_path(:updatecall => error.id), data: {confirm: "Are you sure?"}, class: "underline"
+      .col-md-4.mb-4
+        .card.border-danger
+          .card-body
+            %p.card-text
+              %strong Error:
+              = error.error
+            %p.card-text
+              %small.text-muted
+                ID: #{error.id} | Reported: #{time_ago_in_words(error.created_at)} ago
+            .d-flex.justify-content-between
+              = link_to "More info", error_path(error), class: "btn btn-sm btn-outline-primary"
+              = link_to "Resolved", resolve_path(:updatecall => error.id), data: {confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-success"

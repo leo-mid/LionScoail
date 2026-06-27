@@ -1,17 +1,11 @@
-- if @error.errors.any?
-  %h2 The following errors prevented the article from saving:
-  %ul
-    - @error.errors.full_messages.each do |msg|
-      %li= msg
-= form_for @error do |f|
-  %p
-    = f.label :Where_is_the_error?
-    = f.text_field :error
-  %p
-    = f.label :Give_a_description_of_the_error
-    = f.text_area :description, rows: 3
-  %p
-    = f.label :Upload_screenshots_or_videos
-    = f.file_field :uploads, multiple: true
+= simple_form_for @error do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.submit class: "button"
+  .form-inputs
+    = f.input :error, label: "Where is the error?"
+    = f.input :description, label: "Give a description of the error", input_html: { rows: 3 }
+    = f.input :uploads, as: :file, label: "Upload screenshots or videos", input_html: { multiple: true }
+
+  .form-actions.mt-3
+    = f.submit class: "btn btn-primary"

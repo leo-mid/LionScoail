@@ -1,17 +1,10 @@
-= form_for @room do |f|
-  - if f.object.errors.any?
-    #error_explanation
-      %h2
-        = "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
-      %ul
-        - f.object.errors.full_messages.each do |message|
-          %li
-            = message
-= form_for @room do |form|
-  = form.label :Name_for_new_chat_room
-  = form.text_field :name
+= simple_form_for @room do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = form.label :What_is_this_room_about
-  = form.text_field :description
+  .form-inputs
+    = f.input :name, label: "Name for new chat room"
+    = f.input :description, label: "What is this room about"
 
-  = form.submit "Create chat room", class: 'button'
+  .form-actions.mt-3
+    = f.submit "Create chat room", class: 'btn btn-primary'

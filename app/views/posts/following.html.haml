@@ -1,26 +1,36 @@
-.grid-x
-  .medium-3.cell
+.row
+  .col-md-3
     = render "buttons/posts/following"
-  .medium-9.cell
-    .center
+  .col-md-9
+    .text-center
       %h1 Following Posts
     - @posts.each do |post|
-      .center-box
-        .callout
-          %h5= post.user.username
-          .center
+      .card.mb-4.shadow-sm.rounded-3
+        .card-body
+          .d-flex.align-items-center.mb-3
+            - if post.user.avatar.attached?
+              = image_tag post.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2 border border-primary border-2"
+            - else
+              = image_tag "profilepic.png", size: "40x40", class: "rounded-circle me-2 border border-primary border-2"
+            %h6.mb-0= link_to post.user.username, post.user, class: "text-decoration-none fw-bold text-deep-orange"
+          
+          .mb-3
             - if post.picture.attached?
               - if post.picture.image?
-                .thumbnail
-                  = image_tag post.picture.variant(resize_to_limit: [200, 200])
+                .thumbnail.text-center= image_tag post.picture.variant(resize_to_limit: [600, 600]), class: "img-fluid rounded"
               - if post.picture.video?
-                = video_tag rails_blob_path(post.picture), controls: true, class: "small"
+                = video_tag rails_blob_path(post.picture), controls: true, class: "w-100 rounded"
 
-          %h6= post.content
-          %h6
-            = time_ago_in_words(post.created_at)
-            ago
-          = link_to 'Comments', post
-          = (post.comments.count)
-          %br/
-          = link_to 'Remove Post', post,data: { "turbo-method": :delete, turbo_confirm: 'Are you sure? You do know this is not comeing back' }, class: "dude" if current_user?(post.user)
+          %p.card-text.fs-5= post.content
+          .d-flex.justify-content-between.align-items-center
+            %div
+              = link_to post, class: "btn btn-sm btn-outline-primary rounded-pill px-3" do
+                %i.bi.bi-chat-dots
+                Comments
+                %span.badge.bg-primary.ms-1= post.comments.count
+            %small.text-muted
+              = time_ago_in_words(post.created_at)
+              ago
+          - if current_user?(post.user)
+            .mt-3.pt-3.border-top
+              = link_to 'Remove Post', post, data: { "turbo-method": :delete, turbo_confirm: 'Are you sure? This cannot be undone.' }, class: "btn btn-sm btn-link text-danger p-0 text-decoration-none"

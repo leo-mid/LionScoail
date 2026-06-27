@@ -1,6 +1,17 @@
 @import "color_codes";
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+
+$custom-colors: (
+  "light-orange": $light-orange,
+  "medium-orange": $medium-orange,
+  "dark-orange": $dark-orange,
+  "deep-orange": $deep-orange,
+  "soft-orange": $soft-orange
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
 @import "bootstrap/scss/mixins";
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';

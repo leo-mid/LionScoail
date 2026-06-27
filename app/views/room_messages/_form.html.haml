@@ -1,4 +1,4 @@
-= form_with model: [@room, @room_message] do |f|
-  .field
-    = f.text_field :message
-    = f.submit "Send", class: "button"
+= simple_form_for [@room, @room_message] do |f|
+  .input-group
+    = f.input :message, label: false, wrapper: false, input_html: { class: "form-control" }
+    = f.submit "Send", class: "btn btn-primary"

@@ -26,6 +26,11 @@ development:
     adapter: postgresql
     database: DataLionnav_development
 
+test:
+  primary:
+    adapter: postgresql
+    database: DataLionnav_test
+
 production:
   primary:
     adapter: postgresql

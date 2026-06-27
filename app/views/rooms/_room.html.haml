@@ -1,6 +1,12 @@
 - if room.present?
-  .callout
-    = link_to room.name, room_room_messages_path(room)
+  .col
+    .card.h-100.shadow-sm.rounded-3.transition-hover
+      .card-body
+        %h5.card-title.fw-bold= link_to room.name, room_room_messages_path(room), class: "text-decoration-none text-deep-orange"
+        %p.card-text.text-muted= room.description
+      .card-footer.bg-transparent.border-0.pt-0.pb-3
+        = link_to "Join Room", room_room_messages_path(room), class: "btn btn-primary btn-sm rounded-pill px-4 shadow-sm"
 - else
-  %div
-    %p The are no rooms
+  .col-12
+    .alert.alert-info
+      %p.mb-0 There are no rooms

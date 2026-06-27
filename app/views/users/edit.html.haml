@@ -1,2 +1,7 @@
-%h1 Edit user
-= render 'form', user: @user
+.row.justify-content-center
+  .col-12.col-md-10.col-lg-8
+    .card.mb-4.shadow-sm.border-primary
+      .card-header.bg-primary
+        %h2.h4.mb-0.fw-bold.text-center.text-white Edit User Profile
+      .card-body
+        = render 'form', user: @user

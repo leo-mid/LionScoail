@@ -1,22 +1,23 @@
-%h1 Users
-%table
-  %thead
-    %tr
-      %th Id
-      %th Username
-      %th Email
-      %th Edit Role
-      %th Role
-      %th Remove
-
-  %tbody
-    - @users.each do |user|
+%h1.mb-4 Users
+.table-responsive
+  %table.table.table-striped.table-hover
+    %thead.table-dark
       %tr
-        %td= user.id
-        %td= user.username
-        %td= user.email
-        %td= link_to 'Role Edit', edit_user_path(user)
-        %td= user.role
-        %td= link_to 'Destroy', user,data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }
+        %th Id
+        %th Username
+        %th Email
+        %th Role
+        %th Actions
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.username
+          %td= user.email
+          %td= user.role
+          %td
+            = link_to 'Edit Role', edit_user_path(user), class: "btn btn-sm btn-outline-primary"
+            = link_to 'Destroy', user, data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger"
 %br/
-= link_to "Back", admins_index_path, class: "button"
+= link_to "Back", admins_index_path, class: "btn btn-secondary"

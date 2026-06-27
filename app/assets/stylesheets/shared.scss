@@ -1,10 +1,11 @@
 body p {
-    color: darkslategray;
+    color: #4a2c00; // Deep brown for better contrast on orange-tinted background
     font-size: 16px;
+    line-height: 1.6;
 }
 
 html body {
-  background-color: khaki;
+  background-color: transparent; // Controlled by layout
   font-family: "JosefinSans", serif;
 }
 
@@ -23,7 +24,14 @@ a.button {
 }
 
 a {
-  color: orange;
+  color: $primary;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: $dark-orange;
+    text-decoration: underline;
+  }
 }
 
 a.button:hover {
@@ -32,8 +40,9 @@ a.button:hover {
   border-radius: 10px;
 }
 
-h1, h2{
-  color: #FF6633;
+h1, h2 {
+  color: $primary;
+  font-weight: 700;
 }
 
 input.button {
@@ -52,11 +61,15 @@ input:visited {
 }
 
 body h3, h4, b {
-  color: chocolate;
+  color: $dark-orange;
 }
 
-body h5{
-  color: brown;
+body h5 {
+  color: $primary;
+}
+
+body h1, body h2 {
+  color: $deep-orange;
 }
 
 a.hover {
@@ -173,6 +186,67 @@ html body, h1, h2, h3, h4, h5, h6, p, li {
   margin-right: 18rem;
 }
 
-.underline{
-  text-decoration: underline;
+.text-muted {
+  color: #7d5a44 !important; // Warmer muted color for better blending with orange theme
+}
+
+.card {
+  border-radius: 12px;
+  border: 1px solid rgba($primary, 0.25);
+  background-color: #fffaf5; // Very slight tint to prevent "clinical" white
+  overflow: hidden; // Ensures header/footer backgrounds respect border-radius
+
+  &.shadow-sm {
+    box-shadow: 0 4px 15px rgba($deep-orange, 0.1) !important;
+  }
+}
+
+.card-header {
+  background-color: $soft-orange;
+  border-bottom: 1px solid rgba($primary, 0.2);
+  color: $deep-orange;
+  font-weight: bold;
+}
+
+.card-footer {
+  background-color: rgba($soft-orange, 0.5);
+  border-top: 1px solid rgba($primary, 0.2);
+}
+
+.alert-info {
+  background-color: $soft-orange;
+  border-color: rgba($primary, 0.3);
+  color: $deep-orange;
+}
+
+.list-group-item {
+  border-color: rgba($primary, 0.15);
+  background-color: transparent;
+  &.active {
+    background-color: $primary;
+    border-color: $primary;
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary;
+
+  &:hover {
+    background-color: $dark-orange;
+    border-color: $dark-orange;
+    color: #fff;
+  }
+}
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+
+  &:hover {
+    background-color: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
 }

@@ -1,7 +1,8 @@
-.grid-x
-  .medium-3.cell
+.row
+  .col-md-3
     = render "buttons/chatrooms/new"
-  .medium-9.cell
-    %h1
-      Creating a room
-    = render partial: 'form'
+  .col-md-9
+    %h1 Creating a room
+    .card
+      .card-body
+        = render partial: 'form'

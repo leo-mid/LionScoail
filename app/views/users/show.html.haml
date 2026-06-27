@@ -1,49 +1,52 @@
-.grid-x
-  .medium-1.cell
-  .medium-3.cell
-    - if @user.avatar.attached?
-      = image_tag @user.avatar.variant(resize_to_fill: [150, 150])
-    - else
-      .small
-        = image_tag ("profilepic.png")
-  .medium-8.cell
-    %h1= @user.username
-    %h5
-      .grid-x
-        .medium-2.cell
-          %b
-            #{@user.posts.count}
-          posts
-        .medium-2.cell
-          %b
-            %a{:href => "#{followers_user_path(@user)}"}
-              #{@user.followers.count}
-          followers
-        .medium-2.cell
-          %b
-            %a{:href => "#{following_user_path(@user)}"}
-              #{@user.following.count}
-          following
-    .grid-x 
-      .medium-2.cell
-        = render 'follow_form', user: @user if user_signed_in?
-    %p= @user.body
-.split-profile
-.grid-x
-  - @posts.each do |post|
-    .medium-4.cell.space
-      .callout
-        .center
-          - if post.picture.attached?
-            - if post.picture.image?
-              .thumbnail= image_tag post.picture.variant(resize_to_limit: [350, 350])
-            - if post.picture.video?
-              = video_tag rails_blob_path(post.picture), controls: true, class: "small"
-        %br/
-        = post.content
-        %br/
-        = link_to 'Comments', post, class: "button"
-        = link_to 'Destroy', post, 'data-turbo-method': :delete,
-        data: { confirm: 'Are you sure? You do know this is not comeing back' }, class: "button" if current_user?(post.user)
-        %br/
-    %br
+.container.py-5
+  .row.justify-content-center
+    .col-lg-10
+      .card.shadow-sm.rounded-3.mb-5
+        .card-body.p-4.p-md-5
+          .row.align-items-center
+            .col-md-3.text-center.mb-4.mb-md-0
+              - if @user.avatar.attached?
+                = image_tag @user.avatar.variant(resize_to_fill: [150, 150]), class: "rounded-circle shadow-sm border border-4 border-primary"
+              - else
+                = image_tag "profilepic.png", size: "150x150", class: "rounded-circle shadow-sm border border-4 border-primary"
+            .col-md-9
+              .d-flex.flex-column.flex-md-row.justify-content-between.align-items-md-center.mb-3
+                %h1.fw-bold.mb-0= @user.username
+                .mt-3.mt-md-0
+                  = render 'follow_form', user: @user if user_signed_in?
+              
+              .d-flex.gap-4.mb-4
+                %div
+                  %span.fw-bold= @user.posts.count
+                  %span.text-muted posts
+                %a.text-decoration-none.link-deep-orange{:href => "#{followers_user_path(@user)}"}
+                  %span.fw-bold= @user.followers.count
+                  %span.text-muted followers
+                %a.text-decoration-none.link-deep-orange{:href => "#{following_user_path(@user)}"}
+                  %span.fw-bold= @user.following.count
+                  %span.text-muted following
+              
+              - if @user.body.present?
+                %p.lead.mb-0= @user.body
+
+      %h3.fw-bold.mb-4 Recent Posts
+      .row
+        - @posts.each do |post|
+          .col-md-6.mb-4
+            .card.shadow-sm.rounded-3.h-100
+              .card-body.d-flex.flex-column
+                - if post.picture.attached?
+                  .mb-3.text-center
+                    - if post.picture.image?
+                      = image_tag post.picture.variant(resize_to_limit: [400, 400]), class: "img-fluid rounded"
+                    - if post.picture.video?
+                      = video_tag rails_blob_path(post.picture), controls: true, class: "w-100 rounded"
+                
+                %p.card-text.flex-grow-1= post.content
+                
+                .d-flex.justify-content-between.align-items-center.mt-auto.pt-3.border-top
+                  = link_to post, class: "btn btn-sm btn-outline-primary rounded-pill px-3" do
+                    Comments
+                    %span.badge.bg-primary.ms-1= post.comments.count
+                  - if current_user?(post.user)
+                    = link_to 'Destroy', post, 'data-turbo-method': :delete, data: { confirm: 'Are you sure? This cannot be undone.' }, class: "text-danger text-decoration-none small"

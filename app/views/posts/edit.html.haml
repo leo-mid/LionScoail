@@ -1,8 +1,10 @@
-%h1 Editing post
+.row
+  .col-md-8.offset-md-2
+    %h1 Editing post
+    .card.mb-4
+      .card-body
+        = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @post, class: "button"
-
-\|
-= link_to 'Back', posts_path, class: "button"
+    .actions
+      = link_to 'Show', @post, class: "btn btn-outline-primary"
+      = link_to 'Back', posts_path, class: "btn btn-secondary"

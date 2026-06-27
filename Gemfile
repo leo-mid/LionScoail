@@ -51,6 +51,8 @@ gem 'sprockets-rails'
 # devise gem
 gem 'devise', '~> 5'
 
+gem 'simple_form'
+
 # Use ActiveStorage variant
 gem 'aws-sdk-s3', require: false
 gem 'fastimage'

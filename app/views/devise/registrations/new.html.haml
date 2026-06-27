@@ -1,28 +1,14 @@
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false} } ) do |f|
-  .grid-x
-    .medium-3.cell
-    .medium-6.cell
-      .callout.rounded
-        %h2 Sign up
+.row.justify-content-center
+  .col-12.col-md-8.col-lg-6
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false} } ) do |f|
+      .alert.alert-info
+        %h2.fw-bold.text-center Sign up
         = render "devise/shared/error_messages", resource: resource
-        .field
-          = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: "email"
-        .field
-          = f.label :username
-          = f.text_field :username
-        .field
-          = f.label :avatar, "Profile Picture"
-          (Optional)
-          = f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png'
-        .field
-          = f.label :password
-          - if @minimum_password_length
-            %em
-              (#{@minimum_password_length} characters minimum)
-          = f.password_field :password, autocomplete: "new-password"
-        .field
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "new-password"
+        = f.input :email, autofocus: true, autocomplete: "email"
+        = f.input :username
+        = f.input :avatar, as: :file, label: "Profile Picture (Optional)", input_html: { accept: 'image/jpeg,image/gif,image/png' }
+        = f.input :password, autocomplete: "new-password", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+        = f.input :password_confirmation, autocomplete: "new-password"
         .actions
-          = f.submit "Sign up", class: "button"
+          = f.submit "Sign up", class: "btn btn-primary"
+          = render "devise/shared/links"

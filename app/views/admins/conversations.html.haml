@@ -1,20 +1,21 @@
-%h1 Conversations
-%table
-  %thead
-    %tr
-      %th Id
-      %th Sender Id
-      %th Reciver Id
-      %th Messages
-      %th Remove
-
-  %tbody
-    - @conversations.each do |conversation|
+%h1.mb-4 Conversations
+.table-responsive
+  %table.table.table-striped.table-hover
+    %thead.table-dark
       %tr
-        %td= conversation.id
-        %td= conversation.sender_id
-        %td= conversation.receiver_id
-        %td= conversation.messages.count
-        %td= link_to 'Destroy', admins_conversations_path, data: { confirm: 'As of right now use rails c to delete conversations' }
+        %th Id
+        %th Sender Id
+        %th Receiver Id
+        %th Messages
+        %th Actions
+
+    %tbody
+      - @conversations.each do |conversation|
+        %tr
+          %td= conversation.id
+          %td= conversation.sender_id
+          %td= conversation.receiver_id
+          %td= conversation.messages.count
+          %td= link_to 'Destroy', "#", class: "btn btn-sm btn-outline-danger disabled", title: "As of right now use rails c to delete conversations"
 %br/
-= link_to "Back", admins_index_path, class: "button"
+= link_to "Back", admins_index_path, class: "btn btn-secondary"

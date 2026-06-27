@@ -1,32 +1,24 @@
-= form_for user do |f|
-  -if current_user == user
-    - if f.object.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
-        %ul
-          - f.object.errors.full_messages.each do |message|
-            %li= message
-    .callout
-      .field
-        = f.label :email
-        = f.email_field :email, autofocus: true, autocomplete: "email"
-      .field
-        = f.label :password
-        %i (Leave blank if you don't want to change it)
-        = f.password_field :password, autocomplete: "new-password"
-      .field
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, autocomplete: "new-password"
-      .field
-        = f.label :Username
-        = f.text_field :username
-      .field
-        = f.label :bio
-        = f.text_field :body
-      .field
-        = f.label :avatar, "Profile Picture"
-        = f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png,image/heic', direct_upload: true
-      .actions
-        = f.submit "Update", class:"button"
-      -if current_user == user
-        = link_to "Delete Account", user, data: { "turbo-method": :delete, turbo_confirm: "Notice this will delete all your things accross LionNav.com. Do you wish to continue?" }, class: "button"
+= simple_form_for user do |f|
+  - if current_user == user
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+    %section.mb-4
+      %h5.text-primary.border-bottom.pb-2.mb-3 Profile Information
+      .row
+        .col-md-6
+          = f.input :email, autofocus: true, autocomplete: "email"
+        .col-md-6
+          = f.input :username
+      = f.input :body, label: "Bio", input_html: { rows: 3 }
+      = f.input :avatar, as: :file, label: "Profile Picture", input_html: { class: 'form-control', accept: 'image/jpeg,image/gif,image/png,image/heic', direct_upload: true }
+
+    .d-grid.gap-2.d-md-flex.justify-content-md-end.mb-4
+      = f.submit "Update Profile", class: "btn btn-primary btn-lg px-5"
+
+    .card.border-danger.shadow-sm
+      .card-header.bg-danger
+        %h5.mb-0.text-white Danger Zone
+      .card-body
+        %p.text-muted Notice this will delete all your things across LionNav.com. This action cannot be undone.
+        = link_to "Delete Account", user, data: { "turbo-method": :delete, turbo_confirm: "Are you absolutely sure? This will delete everything." }, class: "btn btn-outline-danger"
