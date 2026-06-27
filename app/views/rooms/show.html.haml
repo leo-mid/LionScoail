@@ -9,7 +9,11 @@
         %hr
         = render 'room_messages/form'
         %hr
-        = render partial: 'rooms'
+        - if @rooms.any?
+          .list-group
+            = render @rooms
+        - else
+          .alert.alert-info No other rooms available.
   .col-md-8
     .card
       .card-header

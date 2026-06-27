@@ -1,0 +1,11 @@
+one:
+  body: Message One
+  conversation: one
+  user: one
+  read: false
+
+two:
+  body: Message Two
+  conversation: one
+  user: two
+  read: true

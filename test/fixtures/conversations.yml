@@ -1,0 +1,7 @@
+one:
+  sender_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  receiver_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+
+two:
+  sender_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  receiver_id: <%= ActiveRecord::FixtureSet.identify(:one) %>

@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to rooms_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class RoomsController < ApplicationController
       flash[:success] = "Room #{@room.name} was updated successfully"
       redirect_to rooms_path
     else
-      render :new
+      render :edit, status: :unprocessable_entity
     end
   end
 

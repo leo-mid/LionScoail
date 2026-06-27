@@ -1,10 +1,20 @@
-.row
-  .col-md-8.offset-md-2
-    %h1 Editing post
-    .card.mb-4
+.row.justify-content-center
+  .col-12.col-md-10.col-lg-8
+    .card.mb-4.shadow-sm.border-primary
+      .card-header.bg-primary
+        %h2.h4.mb-0.fw-bold.text-white Editing Post
       .card-body
-        = render 'form'
+        = simple_form_for @post, html: { data: { turbo: false } } do |f|
+          = f.error_notification
+          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-    .actions
+          .form-inputs.mb-4
+            = f.input :content, label: "What's on your mind?", placeholder: "Share your thoughts...", input_html: { rows: 4, class: 'form-control-lg border-primary-subtle shadow-sm' }
+            = f.input :picture, as: :file, label: "Add a Photo or Video", input_html: { class: 'form-control', accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm' }
+
+          .d-grid.gap-2.d-md-flex.justify-content-md-end
+            = f.submit "Update Post", class: 'btn btn-primary btn-lg px-5 shadow-sm'
+
+    .d-flex.gap-2
       = link_to 'Show', @post, class: "btn btn-outline-primary"
       = link_to 'Back', posts_path, class: "btn btn-secondary"

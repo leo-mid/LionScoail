@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  after_create_commit { broadcast_prepend_to "messages", target: self.conversation }
+  after_create_commit { broadcast_prepend_to "messages", target: self.conversation } if Rails.env.production?
 
   belongs_to :conversation
   belongs_to :user

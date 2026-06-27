@@ -1,0 +1,21 @@
+one:
+  about: false
+  chatrooms: false
+  conversationdisable: false
+  credit: false
+  error: false
+  expense: false
+  forums: false
+  homedisable: false
+  lionfianace: false
+  lionsocial: false
+  movie: false
+  moviemaker: false
+  myaccont: false
+  payment: false
+  picturescene: false
+  postdisable: false
+  scene: false
+  tutorial: false
+  userdisable: false
+  video: false

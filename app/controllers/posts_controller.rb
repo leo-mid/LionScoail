@@ -42,7 +42,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Your post was successfully posted.' }
         format.json { render :index, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end

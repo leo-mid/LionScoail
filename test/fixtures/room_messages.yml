@@ -1,0 +1,9 @@
+one:
+  message: Room Message One
+  room: one
+  user: one
+
+two:
+  message: Room Message Two
+  room: one
+  user: two

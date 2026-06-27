@@ -23,6 +23,9 @@ class MessagesController < ApplicationController
       if @message.save
         format.html { redirect_to conversation_messages_url(@conversation)}
         format.json { render :index, status: :created, location: conversation_messages_url(@conversation) }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end
   end

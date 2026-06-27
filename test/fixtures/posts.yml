@@ -1,7 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyString
+  content: MyString
+  user: one
+  created_at: <%= 2.hours.ago.to_fs(:db) %>
 
 two:
-  body: MyString
+  content: MyString
+  user: two
+  created_at: <%= 1.hour.ago.to_fs(:db) %>

@@ -2,7 +2,9 @@ require "test_helper"
 
 class AboutsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @admin = users(:admin)
     @about = abouts(:one)
+    sign_in @admin
   end
 
   test "should get index" do
@@ -17,14 +19,14 @@ class AboutsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create about" do
     assert_difference('About.count') do
-      post abouts_url, params: { about: { bottom: @about.bottom, change: @about.change, githubtitle: @about.githubtitle, linkgithub: @about.linkgithub, list1: @about.list1, list2: @about.list2, list3: @about.list3, title: @about.title, toparea: @about.toparea } }
+      post abouts_url, params: { about: { buttom: @about.buttom, change: @about.change, githubtitle: @about.githubtitle, linkgithub: @about.linkgithub, list1: @about.list1, list2: @about.list2, list3: @about.list3, title: @about.title, toppara: @about.toppara } }
     end
 
-    assert_redirected_to about_url(About.last)
+    assert_redirected_to abouts_path
   end
 
   test "should show about" do
-    get about_url(@about)
+    get abouts_url(@about)
     assert_response :success
   end
 
@@ -34,8 +36,8 @@ class AboutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update about" do
-    patch about_url(@about), params: { about: { bottom: @about.bottom, change: @about.change, githubtitle: @about.githubtitle, linkgithub: @about.linkgithub, list1: @about.list1, list2: @about.list2, list3: @about.list3, title: @about.title, toparea: @about.toparea } }
-    assert_redirected_to about_url(@about)
+    patch about_url(@about), params: { about: { buttom: @about.buttom, change: @about.change, githubtitle: @about.githubtitle, linkgithub: @about.linkgithub, list1: @about.list1, list2: @about.list2, list3: @about.list3, title: @about.title, toppara: @about.toppara } }
+    assert_redirected_to abouts_path
   end
 
   test "should destroy about" do

@@ -18,6 +18,9 @@ class RoomMessagesController < ApplicationController
       if @room_message.save
         format.html { redirect_to room_room_messages_path(@room) }
         format.json { render :index, status: :created, location: room_room_messages_path(@room) }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @room_message.errors, status: :unprocessable_entity }
       end
     end
   end

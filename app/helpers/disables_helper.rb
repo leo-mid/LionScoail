@@ -1,6 +1,6 @@
 module DisablesHelper
   def postDisableCheck
-    if Disable.first.postdisable == true
+    if Disable.first&.postdisable == true
       if user_signed_in?
         unless current_user.role == "admin"
           redirect_to root_path, notice: "Posts have been temporary disabled for a while till the problem has been fixed. - Have a nice day! 😁"
@@ -10,7 +10,7 @@ module DisablesHelper
   end
 
   def messagingDisableCheck
-    if Disable.first.conversationdisable == true
+    if Disable.first&.conversationdisable == true
       if user_signed_in?
         unless current_user.role == "admin"
           redirect_to root_path, notice: "Messaging has been temporary disabled for a while till the problem has been fixed. - Have a nice day! 😁"
@@ -20,7 +20,7 @@ module DisablesHelper
   end
 
   def aboutDisableCheck
-    if Disable.first.about == true
+    if Disable.first&.about == true
       if user_signed_in?
         unless current_user.role == "admin"
           redirect_to root_path, notice: "The about page has been temporary disabled for a while till the problem has been fixed. - Have a nice day! 😁"
@@ -30,7 +30,7 @@ module DisablesHelper
   end
 
   def lionsocialDisableCheck
-    if Disable.first.lionsocial == true
+    if Disable.first&.lionsocial == true
       if user_signed_in?
         unless current_user.role == "admin"
           unless controller_name == "disables"
@@ -42,7 +42,7 @@ module DisablesHelper
   end
 
   def lionnavDisabeCheck
-    if Disable.first.homedisable == true
+    if Disable.first&.homedisable == true
       if user_signed_in?
         unless current_user.role == "admin"
           unless controller_name == "disables"

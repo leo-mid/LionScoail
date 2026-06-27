@@ -2,22 +2,22 @@
 
 one:
   title: MyString
-  toparea: MyText
+  toppara: MyText
   change: MyText
   list1: MyText
   list2: MyText
   list3: MyText
-  bottom: MyText
+  buttom: MyText
   linkgithub: MyText
   githubtitle: MyText
 
 two:
   title: MyString
-  toparea: MyText
+  toppara: MyText
   change: MyText
   list1: MyText
   list2: MyText
   list3: MyText
-  bottom: MyText
+  buttom: MyText
   linkgithub: MyText
   githubtitle: MyText
