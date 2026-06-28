@@ -14,15 +14,6 @@ amazon:
   region: <%= Rails.application.credentials.dig(:aws, :region) %>
   bucket: <%= Rails.application.credentials.dig(:aws, :bucket) %>
 
-minio:
-  service: S3
-  bucket: <%= Rails.application.credentials.dig(:minio, :bucket) %>
-  endpoint: <%= Rails.application.credentials.dig(:minio, :endpoint) %>
-  access_key_id: <%= Rails.application.credentials.dig(:minio, :access_key) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:minio, :secert_key) %>
-  region: <%= Rails.application.credentials.dig(:minio, :region) %>
-  force_path_style: true
-
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS

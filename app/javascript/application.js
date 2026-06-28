@@ -7,4 +7,4 @@ import * as bootstrap from "bootstrap"
 //
 // document.addEventListener("turbo:morph", () => {
 //   LocalTime.run()
-// })%
+// })
