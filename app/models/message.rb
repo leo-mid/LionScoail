@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  after_create_commit { broadcast_prepend_to "messages", target: self.conversation } if Rails.env.production?
+  after_create_commit { broadcast_prepend_to 'messages', target: self.conversation } if Rails.env.production?
 
   belongs_to :conversation
   belongs_to :user
@@ -11,7 +11,7 @@ class Message < ApplicationRecord
   encrypts :body
 
   private
-    def message_time
-      created_at.strftime("%d/%m/%y at %l:%M %p")
-    end
+  def message_time
+    created_at.strftime('%d/%m/%y at %l:%M %p')
+  end
 end

@@ -6,5 +6,5 @@ class Post < ApplicationRecord
 
   scope :by_newest, -> { self.order(created_at: :desc) }
   scope :of_followed_users, -> (following_users) { where user_id: following_users }
-  validates :content, length: { minimum:2}
+  validates :content, length: { minimum: 2 }
 end

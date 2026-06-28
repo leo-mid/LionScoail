@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-    @comment.update_attribute(:site, "social")
+    @comment.site = "social"
 
     if @comment.save
       redirect_to post_path(@comment.post)

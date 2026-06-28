@@ -1,5 +1,5 @@
 class DisablesController < ApplicationController
-  before_action :set_disable, only: [:create, :update, :edit]
+  before_action :set_disable, only: [:update, :edit]
   before_action :check_admin, only: [:new, :edit]
 
   def new
