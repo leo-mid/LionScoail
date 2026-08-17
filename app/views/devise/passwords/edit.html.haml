@@ -1,7 +1,7 @@
 .row.justify-content-center
   .col-12.col-md-8.col-lg-6
     %h2.fw-bold.text-center Change your password
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { 'data-turbo-method': :put }) do |f|
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, data: { turbo: false } }) do |f|
       = render "devise/shared/error_messages", resource: resource
       = f.hidden_field :reset_password_token
       .alert.alert-info

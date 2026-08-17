@@ -40,4 +40,7 @@
                   .col
                     %h5.mb-0= user.username
                   .col-auto
-                    = link_to "Start Conversation", conversations_path(sender_id: current_user.id, receiver_id: user.id), 'data-turbo-method': :post, class: "btn btn-primary btn-sm"
+                    = form_with url: conversations_path, method: :post, local: true, html: { data: { turbo: false } } do |f|
+                      = f.hidden_field :sender_id, value: current_user.id
+                      = f.hidden_field :receiver_id, value: user.id
+                      = f.submit "Start Conversation", class: "btn btn-primary btn-sm"

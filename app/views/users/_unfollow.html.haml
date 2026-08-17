@@ -1,2 +1,2 @@
-= simple_form_for(current_user.active_relationships.find_by(followed_id: user.id), method: :delete, data: { turbo_method: :delete }, remote: true) do |f|
+= simple_form_for(current_user.active_relationships.find_by(followed_id: user.id), method: :delete, local: true, html: { data: { turbo: false } }) do |f|
   = f.submit "Unfollow", class: "btn btn-outline-danger"

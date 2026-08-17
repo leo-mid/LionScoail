@@ -25,6 +25,7 @@
 .navbar-custom .navbar-nav .nav-link:focus {
   background-color: rgba($white, 0.2);
   color: $white;
+  text-decoration: none;
 }
 
 .dropdown-menu {

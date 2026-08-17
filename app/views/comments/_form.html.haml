@@ -1,5 +1,5 @@
 %h3 Post a Comment
-= simple_form_for [ @post, @comment ] do |f|
+= simple_form_for [ @post, @comment ], local: true, html: { data: { turbo: false } } do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 

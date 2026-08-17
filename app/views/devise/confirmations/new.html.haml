@@ -1,7 +1,7 @@
 .row
   .col-md-6.offset-md-3
     %h2.fw-bold.text-center Resend confirmation instructions
-    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { data: { turbo: false } }) do |f|
       = render "devise/shared/error_messages", resource: resource
       .alert.alert-info
         = f.input :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)

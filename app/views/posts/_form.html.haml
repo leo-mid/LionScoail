@@ -1,4 +1,4 @@
-= simple_form_for @post do |f|
+= simple_form_for post, local: true, html: { data: { turbo: false } } do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
@@ -7,4 +7,4 @@
     = f.input :picture, as: :file, label: "Add a Photo or Video", input_html: { class: 'form-control', accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm' }
 
   .d-grid.gap-2.d-md-flex.justify-content-md-end
-    = f.submit "Post Now", class: 'btn btn-primary btn-lg px-5 shadow-sm'
+    = f.submit "Post", class: 'btn btn-primary btn-lg px-5 shadow-sm'

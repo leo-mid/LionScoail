@@ -1,4 +1,4 @@
-= simple_form_for user do |f|
+= simple_form_for user, local: true, html: { data: { turbo: false } } do |f|
   - if current_user == user
     = f.error_notification
     = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
