@@ -6,10 +6,9 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
-    "build:css:fonts": "cp -r node_modules/bootstrap-icons/font/fonts app/assets/builds/fonts",
-    "build:css": "yarn build:css:compile && yarn build:css:prefix && yarn build:css:fonts",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\""
   },
   "dependencies": {
@@ -17,8 +16,10 @@
     "@hotwired/turbo-rails": "^8.0.16",
     "@popperjs/core": "^2.11.8",
     "autoprefixer": "^10.4.21",
-    "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
+    "foundation-sites": "^6.8.1",
+    "jquery": "^3.7.1",
+    "motion-ui": "^2.0.5",
+    "what-input": "^5.2.12",
     "local-time": "^3.0.3",
     "nodemon": "^3.1.10",
     "postcss": "^8.5.6",

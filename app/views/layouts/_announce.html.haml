@@ -1,6 +1,4 @@
 - Announcement.all.each do |announce|
   - if announce.site == "social" and announce.hidden == false
-    .alert.alert-warning.alert-dismissible.fade.show{role: "alert"}
-      %strong Announcement:
-      = announce.text
-      %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "alert", :type => "button"}
+    .callout
+      %p= announce.text

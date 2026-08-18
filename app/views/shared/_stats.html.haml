@@ -1,10 +1,10 @@
 - @user ||= current_user
-.d-flex.gap-3
-  %a.text-decoration-none.link-deep-orange{:href => "#{followers_user_path(@user)}"}
-    %span.badge.bg-primary.rounded-pill#followers
+.stats
+  %a{:href => "#{followers_user_path(@user)}"}
+    %strong#followers.stat
       = @user.followers.count
-    %span.ms-1 followers
-  %a.text-decoration-none.link-deep-orange{:href => "#{following_user_path(@user)}"}
-    %span.badge.bg-primary.rounded-pill#following
+    followers
+  %a{:href => "#{following_user_path(@user)}"}
+    %strong#following.stat
       = @user.following.count
-    %span.ms-1 following
+    following

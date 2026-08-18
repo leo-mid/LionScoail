@@ -1,18 +1,26 @@
-.row.justify-content-center
-  .col-12.col-md-3
+.grid-x
+  .medium-3.cell
     = render "buttons/posts/new"
-  .col-12.col-md-9
-    .card.shadow-sm.border-primary
-      .card-header.bg-primary
-        %h2.h4.mb-0.fw-bold.text-white New Post
-      .card-body
-        = simple_form_for @post, html: { data: { turbo: false } } do |f|
-          = f.error_notification
-          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-          .form-inputs.mb-4
-            = f.input :content, label: "What's on your mind?", placeholder: "Share your thoughts...", input_html: { rows: 4, class: 'form-control-lg border-primary-subtle shadow-sm' }
-            = f.input :picture, as: :file, label: "Add a Photo or Video", input_html: { class: 'form-control', accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm' }
-
-          .d-grid.gap-2.d-md-flex.justify-content-md-end
-            = f.submit "Post Now", class: 'btn btn-primary btn-lg px-5 shadow-sm'
+  .medium-9.cell
+    .center
+      %h1 New post
+    .center-box
+      .callout
+        = form_for @post do |f|
+          - if f.object.errors.any?
+            #error_explanation
+              %h2
+                = "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
+              %ul
+                - f.object.errors.full_messages.each do |message|
+                  %li
+                    = message
+          .field
+            %h4 Text
+            = f.text_area :content, rows: 2
+          %span.picture
+            (Picture or Video)
+            = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm'
+          %br/
+          .actions
+            = f.submit "Post", class: 'button'

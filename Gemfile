@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '4.0.5'
+ruby '4.0.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 8.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 6'
+gem 'puma', '~> 7'
 # gem "passenger", ">= 5.3.2", require: "phusion_passenger/rack_handler"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
@@ -31,12 +31,16 @@ gem 'net-pop', require: false
 gem 'haml-rails', '~> 2.0.1'
 gem 'html2haml'
 
+# Foundtion Gems
+gem 'autoprefixer-rails'
+gem 'foundation-rails'
+
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 
 gem 'friendly_id'
 
-gem "ruby-vips"
+gem 'ruby-vips'
 
 # New Gems
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

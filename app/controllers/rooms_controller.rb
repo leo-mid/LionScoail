@@ -19,7 +19,7 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to rooms_path
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
@@ -27,11 +27,11 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(permitted_parameters)
+    if @room.update_attributes(permitted_parameters)
       flash[:success] = "Room #{@room.name} was updated successfully"
       redirect_to rooms_path
     else
-      render :edit, status: :unprocessable_entity
+      render :new
     end
   end
 
