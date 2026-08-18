@@ -1,4 +1,5 @@
-= simple_form_for [@conversation, @message], local: true, html: { data: { turbo: false } } do |f|
-  .message-bar.d-flex.gap-2
-    = f.input :body, label: false, as: :string, placeholder: "Send message", wrapper: false, input_html: { class: "form-control" }
-    = f.submit "Send", class: "btn btn-primary"
+= form_with model: [@conversation, @message] do |f|
+  .message-bar
+    .field
+      = f.text_field  :body, placeholder: "Send message"
+      //= f.submit "Send", class: "button"

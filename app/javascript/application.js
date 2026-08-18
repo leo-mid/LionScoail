@@ -1,10 +1,18 @@
-import "@hotwired/turbo-rails"
-import "./controllers"
-import * as bootstrap from "bootstrap"
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import jquery from "jquery"
+window.jQuery = jquery
+window.$ = jquery
 
-// import LocalTime from "local-time"
-// LocalTime.start()
-//
-// document.addEventListener("turbo:morph", () => {
-//   LocalTime.run()
-// })
+import "@hotwired/turbo-rails"
+import "@rails/activestorage"
+import "./controllers"
+
+// Foundation setup.
+import Foundation from 'foundation-sites'
+
+$(document).on('turbo:load', function () {
+  $(document).foundation();
+});
+
+// My Custom JavaScript
+import "./custom/direct_upload"

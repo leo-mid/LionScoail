@@ -31,12 +31,16 @@ gem 'net-pop', require: false
 gem 'haml-rails', '~> 2.0.1'
 gem 'html2haml'
 
+# Foundtion Gems
+gem 'autoprefixer-rails'
+gem 'foundation-rails'
+
 gem 'cssbundling-rails'
 gem 'jsbundling-rails'
 
 gem 'friendly_id'
 
-gem "ruby-vips"
+gem 'ruby-vips'
 
 # New Gems
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]

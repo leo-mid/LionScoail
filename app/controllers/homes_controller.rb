@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
 
   def index
-    @page_title = "Lion social"
+    @page_title = "Home Lion social"
   end
 
 end

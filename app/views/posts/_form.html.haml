@@ -1,10 +1,25 @@
-= simple_form_for post, local: true, html: { data: { turbo: false } } do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-  .form-inputs.mb-4
-    = f.input :content, label: "What's on your mind?", placeholder: "Share your thoughts...", input_html: { rows: 4, class: 'form-control-lg border-primary-subtle shadow-sm' }
-    = f.input :picture, as: :file, label: "Add a Photo or Video", input_html: { class: 'form-control', accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm' }
-
-  .d-grid.gap-2.d-md-flex.justify-content-md-end
-    = f.submit "Post", class: 'btn btn-primary btn-lg px-5 shadow-sm'
+= form_for @post do |f|
+  - if f.object.errors.any?
+    #error_explanation
+      %h2
+        = "#{pluralize(f.object.errors.count, "error")} prohibited this post from being saved:"
+      %ul
+        - f.object.errors.full_messages.each do |message|
+          %li
+            = message
+  .field
+    %h4 The post
+    = f.text_area :content, rows: 2
+  %span.picture
+    (Picture or Video)
+    = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png,video/mp4,video/mov,video/webm'
+  %br/
+  .actions
+    = f.submit "Post", class: 'button'
+:javascript
+  $('#post_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 50) {
+      alert('Maximum file size is 50MB. Please choose a smaller file.');
+    }
+  });

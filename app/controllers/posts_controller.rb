@@ -42,7 +42,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Your post was successfully posted.' }
         format.json { render :index, status: :created, location: @post }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
         format.json { render :index, status: :ok, location: @post }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -74,13 +74,13 @@ class PostsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_post
-    @post = Post.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def post_params
-    params.require(:post).permit(:content, :picture)
-  end
+    # Only allow a list of trusted parameters through.
+    def post_params
+      params.require(:post).permit(:content, :picture)
+    end
 end

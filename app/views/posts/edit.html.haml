@@ -1,11 +1,8 @@
-.row.justify-content-center
-  .col-12.col-md-10.col-lg-8
-    .card.mb-4.shadow-sm.border-primary
-      .card-header.bg-primary
-        %h2.h4.mb-0.fw-bold.text-white Editing Post
-      .card-body
-        = render 'form', post: @post, submit_text: 'Update Post'
+%h1 Editing post
 
-    .d-flex.gap-2
-      = link_to 'Show', @post, class: "btn btn-outline-primary"
-      = link_to 'Back', posts_path, class: "btn btn-secondary"
+= render 'form'
+
+= link_to 'Show', @post, class: "button"
+
+\|
+= link_to 'Back', posts_path, class: "button"
